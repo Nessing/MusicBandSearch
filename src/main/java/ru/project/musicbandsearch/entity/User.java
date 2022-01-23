@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,7 +19,7 @@ import java.util.List;
 public class User {
     @Id
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @Column(name = "email")
     private String email;
     @Column(name = "telegram_id")

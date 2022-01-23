@@ -10,6 +10,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class JWTTokenService implements ITokenService {
@@ -42,7 +43,7 @@ public class JWTTokenService implements ITokenService {
         List<String> roles = jwsClaims.getBody()
                 .get("roles", List.class);
         return UserInfo.builder()
-                .userId(userId)
+                .userId(UUID.fromString(userId))
                 .userEmail(email)
                 .role(roles)
                 .build();

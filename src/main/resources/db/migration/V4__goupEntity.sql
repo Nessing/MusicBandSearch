@@ -2,8 +2,8 @@ CREATE TABLE group_table (
   id uuid DEFAULT uuid_generate_v4 (),
   title VARCHAR(127) NOT NULL,
   id_style SERIAL NOT NULL,
-  price Numeric (2) NOT NULL,
-  program_duration Numeric (2) NOT NULL,
+  price decimal NOT NULL,
+  program_duration decimal NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (id_style) REFERENCES music_style_table (id) ON DELETE SET NULL
   );
@@ -14,7 +14,7 @@ CREATE TABLE musician_finder_table (
   id_instrument SERIAL NOT NULL,
   id_style SERIAL NOT NULL,
   description VARCHAR(255),
-  price Numeric (2),
+  price decimal ,
   location VARCHAR(255),
   PRIMARY KEY (id),
   FOREIGN KEY (id_style) REFERENCES music_style_table (id) ON DELETE SET NULL,
