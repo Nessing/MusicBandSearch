@@ -1,8 +1,9 @@
-package ru.project.musicbandsearch.entities;
+package ru.project.musicbandsearch.entities.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.project.musicbandsearch.entities.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "CUSTOMER")
-public class Customer {
+@Table(name = "MUSICAL_GROUP")
+public class Group implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -24,14 +25,8 @@ public class Customer {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "LASTNAME")
-    private String lastname;
-
-    @Column(name = "ORGANIZATION")
-    private String organization; // может быть null
+    @Column(name = "NAME")  //название группы
+    private String group_name;
 
     @Column(name = "INFO")
     private String info;
@@ -49,7 +44,7 @@ public class Customer {
             name = "MUSICIAN_INSTRUMENT",
             joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
             inverseJoinColumns = @JoinColumn(name = "ID_INSTRUMENT")
-    )   // музыкальный инструмент (тут для поиска группы по инструменту)
+    )   // музыкальный инструмент (тут для поиска музыканта по инструменту)
     private List<Instrument> instruments;
 
     @ManyToMany
@@ -57,7 +52,7 @@ public class Customer {
             name = "MUSICIAN_GENRE",
             joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
             inverseJoinColumns = @JoinColumn(name = "ID_GENRE")
-    )   // жанр музыки (тут для поиска группы по жанру)
+    )   // жанр музыки (тут для поиска музыканта по жанру)
     private List<Genre> genres;
 
     @ManyToMany

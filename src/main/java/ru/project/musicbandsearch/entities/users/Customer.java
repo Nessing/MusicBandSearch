@@ -1,8 +1,9 @@
-package ru.project.musicbandsearch.entities;
+package ru.project.musicbandsearch.entities.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.project.musicbandsearch.entities.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "MUSICIAN")
-public class Musician {
+@Table(name = "CUSTOMER")
+public class Customer implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -30,16 +31,16 @@ public class Musician {
     @Column(name = "LASTNAME")
     private String lastname;
 
-    @Column(name = "NICKNAME")
-    private String nickname; // прозвище музыканта
+    @Column(name = "ORGANIZATION")
+    private String organization; // может быть null
 
     @Column(name = "INFO")
     private String info;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_ROLE",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
+            name = "GROUP_ROLE",
+            joinColumns = @JoinColumn(name = "ID_GROUP"),
             inverseJoinColumns = @JoinColumn(name = "ID_ROLE")
     )   // роль пользователя в системе
     private List<Role> roles;
@@ -49,7 +50,7 @@ public class Musician {
             name = "MUSICIAN_INSTRUMENT",
             joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
             inverseJoinColumns = @JoinColumn(name = "ID_INSTRUMENT")
-    )   // Музыкальный инструмент (тут для указания музыкантом используемым муз. инструментом)
+    )   // музыкальный инструмент (тут для поиска группы по инструменту)
     private List<Instrument> instruments;
 
     @ManyToMany
@@ -57,7 +58,7 @@ public class Musician {
             name = "MUSICIAN_GENRE",
             joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
             inverseJoinColumns = @JoinColumn(name = "ID_GENRE")
-    )   // жанр музыки (тут для указания музыкантом жанра в котором он играет)
+    )   // жанр музыки (тут для поиска группы по жанру)
     private List<Genre> genres;
 
     @ManyToMany
@@ -65,6 +66,6 @@ public class Musician {
             name = "MUSICIAN_TOWN",
             joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
             inverseJoinColumns = @JoinColumn(name = "ID_TOWN")
-    )  //город (тут для указания музыкантом города проживания)
+    )   // город (тут для поиска по городу)
     private List<Town> towns;
 }
