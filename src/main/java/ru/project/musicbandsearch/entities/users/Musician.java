@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "MUSICIAN")
+@Table(name = "USERS")
 public class Musician implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,9 @@ public class Musician implements User {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     @Column(name = "NAME")
     private String name;
@@ -39,33 +42,33 @@ public class Musician implements User {
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_ROLE",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_ROLE")
+            name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )   // роль пользователя в системе
     private List<Role> roles;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_INSTRUMENT",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_INSTRUMENT")
+            name = "USER_INSTRUMENT",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "INSTRUMENT_ID")
     )   // Музыкальный инструмент (тут для указания музыкантом используемым муз. инструментом)
     private List<Instrument> instruments;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_GENRE",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_GENRE")
+            name = "USER_GENRE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GENRE_ID")
     )   // жанр музыки (тут для указания музыкантом жанра в котором он играет)
     private List<Genre> genres;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_TOWN",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_TOWN")
+            name = "USER_TOWN",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TOWN_ID")
     )  //город (тут для указания музыкантом города проживания)
     private List<Town> towns;
 

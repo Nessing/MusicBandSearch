@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "MUSICAL_GROUP")
+@Table(name = "USERS")
 public class Group implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,33 +33,33 @@ public class Group implements User {
 
     @ManyToMany
     @JoinTable(
-            name = "GROUP_ROLE",
-            joinColumns = @JoinColumn(name = "ID_GROUP"),
-            inverseJoinColumns = @JoinColumn(name = "ID_ROLE")
+            name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )   // роль пользователя в системе
     private List<Role> roles;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_INSTRUMENT",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_INSTRUMENT")
+            name = "USER_INSTRUMENT",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "INSTRUMENT_ID")
     )   // музыкальный инструмент (тут для поиска музыканта по инструменту)
     private List<Instrument> instruments;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_GENRE",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_GENRE")
+            name = "USER_GENRE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GENRE_ID")
     )   // жанр музыки (тут для поиска музыканта по жанру)
     private List<Genre> genres;
 
     @ManyToMany
     @JoinTable(
-            name = "MUSICIAN_TOWN",
-            joinColumns = @JoinColumn(name = "ID_MUSICIAN"),
-            inverseJoinColumns = @JoinColumn(name = "ID_TOWN")
+            name = "USER_TOWN",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TOWN_ID")
     )   // город (тут для поиска по городу)
     private List<Town> towns;
 }
