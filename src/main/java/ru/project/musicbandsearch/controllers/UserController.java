@@ -2,15 +2,10 @@ package ru.project.musicbandsearch.controllers;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import ru.project.musicbandsearch.entities.UserDto;
-import ru.project.musicbandsearch.repositories.UserSpecifications;
+import ru.project.musicbandsearch.entities.User;
 import ru.project.musicbandsearch.services.UserService;
-
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -21,40 +16,19 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public Page<UserDto> findAllProducts(
-            @RequestParam MultiValueMap<String, String> params,
-            @RequestParam(name = "p", defaultValue = "1") Integer page
-    ) {
-        if (page < 1) {
-            page = 1;
-        }
-
-        return userService.findAll(UserSpecifications.build(params), page, 4);
+    public List<User> getAllUsers() {
+        return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public UserDto findProductById(@PathVariable Long id) {
-        return userService.findUserDtoById(id).get();
-    }
-
-    @GetMapping("/ids")
-    public List<UserDto> findProductById(@RequestParam List<Long> ids) {
-        return userService.findUserDtosByIds(ids);
+    public User getOneUserById(@PathVariable Long id) {
+        return userService.findById(id).get();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDto saveNewProduct(@RequestBody UserDto product) throws ParseException {
-        return userService.saveOrUpdate(product);
+    public User saveNewUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
-    @PutMapping
-    public UserDto updateProduct(@RequestBody UserDto product) throws ParseException {
-        return userService.saveOrUpdate(product);
-    }
-
-    @DeleteMapping("/{id}")
-    public void updateProduct(@PathVariable Long id) {
-        userService.deleteById(id);
-    }
 }
