@@ -37,12 +37,9 @@ create table users_info
     info_id    bigserial primary key,
     user_name  character varying(255),
     user_email character varying(255),
-    instruments bigserial,
-    genres bigserial,
-    towns bigserial,
-    foreign key (instruments) references instruments (instrument_id),
-    foreign key (genres) references genres (genre_id),
-    foreign key (towns) references towns (town_id)
+    instruments bigserial references instruments (instrument_id),
+    genres bigserial references genres (genre_id),
+    towns bigserial references towns (town_id)
 );
 insert into users_info (info_id, user_name, user_email, instruments, genres, towns)
 values (1, 'user1', 'user1@mail.ru', 1, 1, 1),
@@ -53,10 +50,8 @@ values (1, 'user1', 'user1@mail.ru', 1, 1, 1),
 create table users
 (
     user_id   bigserial primary key,
-    user_info bigserial,
-    user_role bigserial,
-    foreign key (user_info) references users_info (info_id),
-    foreign key (user_role) references user_roles (role_id),
+    user_info bigserial references users_info (info_id),
+    user_role bigserial references user_roles (role_id)
 );
 insert into users (user_id, user_info, user_role)
 values (1, 1, 2),

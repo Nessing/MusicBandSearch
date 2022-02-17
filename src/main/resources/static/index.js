@@ -4,7 +4,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     $scope.init = function () {
         $http.get(contextPath + '/api/v1/users')
             .then(function (response) {
-                $scope.products = response.data;
+                $scope.users = response.data;
             });
     };
 
