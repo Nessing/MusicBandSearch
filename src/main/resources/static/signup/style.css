@@ -1,0 +1,255 @@
+.background{
+margin: auto;
+position: relative;
+width: 645px;
+height: 804px;
+background: #CF6862;
+}
+.logo{
+position: absolute;
+width: 104px;
+height: 69px;
+left: 269px;
+top: 35px;
+background: url(mbsLogo.png);
+}
+.signin_board{
+position: absolute;
+width: 499px;
+height: 661px;
+left: 73px;
+top: 105px;
+background: #1F4F5E;
+box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+}
+.instrument_pic{
+position: absolute;
+width: 59px;
+height: 69px;
+left: 492px;
+top: 116px;
+background: url(img/instrument.png);
+}
+.signin_text{
+position: absolute;
+width: 246px;
+height: 35px;
+left: 212px;
+top: 117px;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 42px;
+color: #FFFFFF;
+text-shadow: 0px -1px 13px rgba(255, 255, 255, 0.6);
+}
+.login_text{
+position: absolute;
+width: 154px;
+height: 22px;
+left: 103px;
+top: 179px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.login_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 207px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.fio_text{
+position: absolute;
+width: 154px;
+height: 22px;
+left: 103px;
+top: 242px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.fio_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 270px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.email_text{
+position: absolute;
+width: 166px;
+height: 22px;
+left: 103px;
+top: 305px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.email_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 333px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.city_text{
+position: absolute;
+width: 244px;
+height: 22px;
+left: 103px;
+top: 368px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.city_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 396px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.phone_number_text{
+position: absolute;
+width: 205px;
+height: 22px;
+left: 103px;
+top: 431px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.phone_number_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 459px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.password_text{
+position: absolute;
+width: 213px;
+height: 22px;
+left: 103px;
+top: 494px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.password_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 522px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.repeat_password_text{
+position: absolute;
+width: 164px;
+height: 22px;
+left: 103px;
+top: 557px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.repeat_password_input{
+position: absolute;
+width: 232px;
+height: 23px;
+left: 103px;
+top: 585px;
+background: #FFFFFF;
+border-radius: 26px;
+}
+.radio_musician_text{
+position: absolute;
+width: 143px;
+height: 11px;
+left: 120px;
+top: 618px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.radio_customer_text{
+position: absolute;
+width: 143px;
+height: 11px;
+left: 120px;
+top: 648px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #FFFFFF;
+}
+.radio_musician{
+position: absolute;
+width: 12px;
+height: 12px;
+left: 103px;
+top: 630px;
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+}
+.radio_customer{
+position: absolute;
+width: 12px;
+height: 12px;
+left: 103px;
+top: 659px;
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+}
+.signin_button{
+position: absolute;
+width: 209px;
+height: 39px;
+left: 230px;
+top: 698px;
+background: #FFD029;
+border-radius: 26px;
+}
