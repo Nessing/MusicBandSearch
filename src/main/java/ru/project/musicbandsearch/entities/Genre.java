@@ -1,17 +1,19 @@
 package ru.project.musicbandsearch.entities;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
 @Entity
-@NoArgsConstructor
-//@Table(name = "")
-public class MusicBand {
+@Data
+@Table(name = "genres")
+public class Genre {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "genre")
+    private String genre;
 }
