@@ -1,0 +1,192 @@
+.background{
+    margin: auto;
+    position: relative;
+    width: 645px;
+    height: 804px;
+    background: #CF6862;
+}
+.nav_panel{
+    position: absolute;
+    width: 645px;
+    height: 31px;
+    left: 0px;
+    top: 0px;
+    
+    background: #BF5F59;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.search_cell{
+    position: absolute;
+    width: 56px;
+    height: 31px;
+    left: 43px;
+    top: 0px;
+    
+    background: #A1514C;
+}
+.search_cell_content{
+    position: absolute;
+    width: 39px;
+    height: 18px;
+    left: 52px;
+    top: -5px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.about_cell_link{
+    position: absolute;
+    width: 36px;
+    height: 18px;
+    left: 111px;
+    top: 8px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.notifications_cell{
+    position: absolute;
+    left: 58.14%;
+    right: 39.38%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.messages_cell{
+    position: absolute;
+    left: 63.72%;
+    right: 32.56%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.profile_name_cell{
+    position: absolute;
+    width: 150px;
+    height: 21px;
+    left: 445px;
+    top: -7px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.profile_cell_home{
+    position: absolute;
+    left: 93.8%;
+    right: 3.41%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    
+}
+.logo{
+    position: absolute;
+    width: 104px;
+    height: 69px;
+    left: 271px;
+    top: 85px;
+}
+.input_search{
+    position: absolute;
+    width: 378px;
+    height: 23px;
+    left: 134px;
+    top: 154px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.search_button_ellipse{
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    left: 522px;
+    top: 154px;
+    border-radius: 100px;
+    background: #BF5F59;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.search_button_icon{
+    position: absolute;
+    left: 81.50%;
+    top: 19.65%;
+    bottom: 78.48%;
+    
+}
+.groups_link{
+    position: absolute;
+    width: 46px;
+    height: 18px;
+    left: 134px;
+    top: 185px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.musicians_link{
+    position: absolute;
+    width: 75px;
+    height: 18px;
+    left: 196px;
+    top: 185px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.events_board{
+    position: absolute;
+    width: 561px;
+    height: 501px;
+    left: 42px;
+    top: 259px;
+    
+    background: #1F4F5D;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.events_board_title{
+    position: absolute;
+    width: 253px;
+    height: 41px;
+    left: 54px;
+    top: 245px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #FFFFFF;
+}
+
