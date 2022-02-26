@@ -52,7 +52,7 @@ CREATE TABLE USERS
     nickname       VARCHAR(75) NOT NULL,
     first_name     VARCHAR(75),
     last_name      VARCHAR(75),
-    telephone      VARCHAR(20),
+    phone          VARCHAR(20),
     instrument     INT REFERENCES INSTRUMENTS (id),
     genre          INT REFERENCES GENRES (id),
     town           INT REFERENCES TOWNS (id),
@@ -60,9 +60,9 @@ CREATE TABLE USERS
     info           VARCHAR(255)
 );
 
-INSERT INTO USERS (email, password, nickname, town, role) VALUES
-('graf5@mail.com', '2321', 'graf', 1, 1),
-('motleycrue@gmail.com', 'gt23s', 'Motley Crue', 2, 2);
+INSERT INTO USERS (email, password, nickname) VALUES
+('graf5@mail.com', '2321', 'graf'),
+('motleycrue@gmail.com', 'gt23s', 'Motley Crue');
 
 
 CREATE TABLE USER_INSTRUMENTS
@@ -87,8 +87,23 @@ INSERT INTO USER_GENRES (user_id, genre_id) VALUES
 (2, 3);
 
 
+CREATE TABLE USER_TOWN
+(
+    user_id     BIGSERIAL REFERENCES USERS (id),
+    town_id     BIGSERIAL REFERENCES TOWNS (id)
+);
+
+INSERT INTO USER_TOWN (user_id, town_id) VALUES
+(1, 2),
+(2, 1);
+
+
 CREATE TABLE USER_ROLE
 (
     user_id     BIGSERIAL REFERENCES USERS (id),
-    role_id     BIGSERIAL REFERENCES  ROLES (id)
+    role_id     BIGSERIAL REFERENCES ROLES (id)
 );
+
+INSERT INTO USER_ROLE (user_id, role_id) VALUES
+(1, 1),
+(2, 2);

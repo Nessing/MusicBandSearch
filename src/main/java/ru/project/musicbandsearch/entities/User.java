@@ -29,13 +29,13 @@ public class User {
     private String firstName;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
-    @Column(name = "telephone")
-    private String telephone;
+    @Column(name = "phone")
+    private String phone;
 
     // ОДИН пользователь может владеть НЕСКОЛЬКИМИ инструментами
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_instruments",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "instrument_id")
@@ -43,7 +43,7 @@ public class User {
     private List<Instrument> instrument;
 
     // ОДИН пользователь может заинтересован в НЕСКОЛЬКИХ жанрах
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_genres",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "genre_id")
@@ -51,12 +51,22 @@ public class User {
     private List<Genre> genre;
 
     // ОДИН пользователь может проживать только в ОДНОМ городе
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinTable(name = "user_town",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "town_id")
+    )
     private Town town;
 
     // ОДИН пользователь одновременно может иметь только ОДНУ роль
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Role role;
+
+//    @OneToOne
+//    @PrimaryKeyJoinColumn
+//    private Role role;
 }

@@ -6,5 +6,6 @@ import ru.project.musicbandsearch.entities.User;
 
 @Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
-
+    User findUserByEmail(String email);
+    User findUserByNickname(String nickname);
 }
