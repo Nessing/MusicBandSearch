@@ -1,0 +1,385 @@
+.background{
+    margin: auto;
+    position: relative;
+    width: 645px;
+    height: 804px;
+    background: #CF6862;
+}
+.nav_panel{
+    position: absolute;
+    width: 645px;
+    height: 31px;
+    left: 0px;
+    top: 0px;
+    
+    background: #BF5F59;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.home_cell{
+    position: absolute;
+    width: 33px;
+    height: 31px;
+    left: 597px;
+    top: 0px;
+    
+    background: #A1514C;
+}
+.search_cell_content{
+    position: absolute;
+    width: 39px;
+    height: 18px;
+    left: 52px;
+    top: 8px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.about_cell_link{
+    position: absolute;
+    width: 36px;
+    height: 18px;
+    left: 111px;
+    top: 8px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.notifications_cell{
+    position: absolute;
+    left: 58.14%;
+    right: 39.38%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.messages_cell{
+    position: absolute;
+    left: 63.72%;
+    right: 32.56%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.profile_name_cell{
+    position: absolute;
+    width: 150px;
+    height: 21px;
+    left: 445px;
+    top: -7px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.profile_cell_home{
+    position: absolute;
+    left: 93.8%;
+    right: 3.41%;
+    top: 0.87%;
+    bottom: 97.01%;
+}
+.profile_board{
+    position: absolute;
+    width: 600px;
+    height: 383px;
+    left: 23px;
+    top: 48px;
+    
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+}
+.logo{
+    position: absolute;
+    width: 74px;
+    height: 50px;
+    left: 32px;
+    top: 53px;
+}
+.main_photo{
+    position: absolute;
+    width: 122px;
+    height: 135px;
+    left: 262px;
+    top: 78px;
+    border-radius: 40px;
+}
+.username{
+    position: absolute;
+    width: 253px;
+    height: 22px;
+    left: 196px;
+    top: 222px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    
+    color: #FFFFFF;
+}
+.settings_logo{
+    position: absolute;
+    left: 38.45%;
+    right: 58.54%;
+    top: 33.22%;
+    bottom: 77.35%;
+    
+    
+}
+.settings_content{
+    position: absolute;
+    width: 127px;
+    height: 18px;
+    left: 273px;
+    top: 268px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    color: #000000;
+}
+.settings_button{
+    position: absolute;
+    width: 163px;
+    height: 26px;
+    left: 241px;
+    top: 264px;
+    background: #FFD029;
+    border-radius: 26px;
+}
+.instrument_icon{
+    position: absolute;
+    left: 7.6%;
+    right: 89.3%;
+    top: 38.31%;
+    bottom: 74.11%;
+}
+.genre_icon{
+    position: absolute;
+    left: 7.6%;
+    right: 89.3%;
+    top: 42.70%;
+    bottom: 71.03%;
+}
+.city_icon{
+    position: absolute;
+    left: 7.6%;
+    right: 89.3%;
+    top: 47.40%;
+    bottom: 67.96%;
+}
+.instrument_content{
+    position: absolute;
+    width: 100px;
+    height: 18px;
+    left: 89px;
+    top: 310px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+}
+.genre_content{
+    position: absolute;
+    width: 100px;
+    height: 18px;
+    left: 89px;
+    top: 348px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+}
+.city_content{
+    position: absolute;
+    width: 100px;
+    height: 18px;
+    left: 89px;
+    top: 386px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+}
+.photos_button{
+    position: absolute;
+    width: 291px;
+    height: 49px;
+    left: 23px;
+    top: 452px;
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+.photos_icon{
+    position: absolute;
+    left: 16.74%;
+    right: 79.18%;
+    top: 57.78%;
+    bottom: 61.88%;
+}
+.photos_content{
+    position: absolute;
+    width: 253px;
+    height: 22px;
+    left: 42px;
+    top: 460px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.videos_button{
+    position: absolute;
+    width: 292px;
+    height: 49px;
+    left: 331px;
+    top: 452px;
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+.videos_icon{
+    position: absolute;
+    left: 63.72%;
+    right: 32.4%;
+    top: 57.90%;
+    bottom: 61.96%;
+}
+.videos_content{
+    position: absolute;
+    width: 253px;
+    height: 22px;
+    left: 350px;
+    top: 460px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.more_info_text{
+    position: absolute;
+    width: 291px;
+    height: 22px;
+    left: 23px;
+    top: 490px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+.more_info_board{
+    position: absolute;
+    width: 600px;
+    height: 313px;
+    left: 23px;
+    top: 559px;
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+}
+.about_myself_input{
+    position: absolute;
+    width: 568px;
+    height: 134px;
+    left: 39px;
+    top: 598px;
+    background: #2F6B7E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+}
+.about_myself_text{
+    position: absolute;
+    width: 59px;
+    height: 18px;
+    left: 67px;
+    top: 567px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+.phone_icon{
+    position: absolute;
+    left: 6.05%;
+    right: 90.85%;
+    top: 95.35%;
+    bottom: 39.07%;
+}
+.phone_content{
+    position: absolute;
+    width: 150px;
+    height: 18px;
+    left: 79px;
+    top: 754px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+.mail_icon{
+    position: absolute;
+    left: 6.05%;
+    right: 90.85%;
+    top: 100%;
+    bottom: 36.07%;
+}
+.mail_content{
+    position: absolute;
+    width: 210px;
+    height: 18px;
+    left: 79px;
+    top: 792px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+}
