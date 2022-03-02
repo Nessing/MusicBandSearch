@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" prefix="og: http://ogp.me/ns#">
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>blog</title>
+    <title>signup</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="Page description">
@@ -27,13 +27,14 @@
 <div class="wrapper">
     <header class="header">
         <div class="navigation">
-            <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+            <div class="logo"><a href="index"><img src="/img/signup/mbsLogo.PNG"></a></div>
             <nav class="nav">
-                <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+                <div class="logo"><a href="index"><img src="/img/signup/mbsLogo.PNG"></a></div>
                 <ul class="nav__list">
                     <li class="nav__list-item"><a class="nav__list-link" href="approach.html">Главная</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" href="blog.html">Поиск</a></li>
-                    <li class="nav__list-item"><a class="contact__button" href="signup">Регистрация</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="signup">Регистрация</a></li>
+                    <li class="nav__list-item"><a class="contact__button" href="login">Войти</a></li>
                 </ul>
             </nav>
             <div class="burger">
@@ -48,11 +49,12 @@
             <div class="caption">
                 <div class="caption__img"><img src="/img/signup/mbsLogo.PNG"></div>
             </div>
-            <form class="signup__box" action="createUser" method="post">
+            <form class="signup__box" action="signup_ok" method="post">
                 <div class="signup__box-top">
                     <div class="signup__box-top-title">Регистрация</div>
                     <div class="signup__box-top-img"><img src="/img/signup/instrument.png"></div>
                 </div>
+                <span class="signup__box-input-error" th:text="${answer}"></span>
                 <div class="signup__box-input-field"><span>логин*</span>
                     <input class="signup__box-input" type="text" name="login" required placeholder="Логин">
                 </div>
@@ -99,7 +101,7 @@
         </div>
     </section>
     <script src="/js/libs.min.js"></script>
-<!--    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>-->
+    <!--    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>-->
     <script src="/js/common.min.js"></script>
 </div>
 </body>

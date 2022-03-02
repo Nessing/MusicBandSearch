@@ -57,12 +57,13 @@ CREATE TABLE USERS
     genre          INT REFERENCES GENRES (id),
     town           INT REFERENCES TOWNS (id),
     role           INT REFERENCES ROLES (id),
-    info           VARCHAR(255)
+    about          VARCHAR(255)
 );
 
-INSERT INTO USERS (email, password, nickname) VALUES
-('graf5@mail.com', '2321', 'graf'),
-('motleycrue@gmail.com', 'gt23s', 'Motley Crue');
+INSERT INTO USERS (email, password, nickname, phone, about) VALUES
+('graf5@mail.com', '2321', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
+                                                    'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater'),
+('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null);
 
 
 CREATE TABLE USER_INSTRUMENTS
@@ -84,6 +85,7 @@ CREATE TABLE USER_GENRES
 
 INSERT INTO USER_GENRES (user_id, genre_id) VALUES
 (1, 2),
+(1, 1),
 (2, 3);
 
 
