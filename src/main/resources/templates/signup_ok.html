@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Page description">
+    <meta name="keywords" content="page, keywords">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="img/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title">
+    <meta property="og:url">
+    <meta property="og:type" content="website">
+    <meta property="og:image">
+    <meta property="og:description">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="navigation">
+            <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+            <nav class="nav">
+                <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+                <ul class="nav__list">
+                    <li class="nav__list-item"><a class="nav__list-link" href="approach.html">Главная</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="blog.html">Поиск</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="signup">Регистрация</a></li>
+                    <li class="nav__list-item"><a class="contact__button" href="login">Войти</a></li>
+                </ul>
+            </nav>
+            <div class="burger">
+                <span class="espan"></span>
+                <span class="espan"></span>
+                <span class="espan"></span>
+            </div>
+        </div>
+    </header>
+    <section class="login">
+        <div class="container">
+            <div class="caption">
+                <div class="caption__img"><img src="/img/login/mbsLogo.PNG"></div>
+            </div>
+            <form class="login__box" action="login" method="get">
+                <div class="login__box-top">
+                    <div class="login__box-top-img"><img src="/img/login/instrument.png"></div>
+                </div>
+                <div class="login__box-input-field">
+                    <span>Спасибо<span th:text="${nickname}"></span>  за регистрацию. Теперь вы можете войти на сайт под своим логином и паролем</span>
+                </div>
+                <div class="login__box-input-button">
+                    <button class="submit__button" href="login">авторизация</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="/js/libs.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="/js/common.min.js"></script>
+</div>
+</body>
+</html>
