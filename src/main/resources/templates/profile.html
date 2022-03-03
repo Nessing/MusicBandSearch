@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${nickname}">username</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Page description">
+    <meta name="keywords" content="page, keywords">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="img/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title">
+    <meta property="og:url">
+    <meta property="og:type" content="website">
+    <meta property="og:image">
+    <meta property="og:description">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="navigation">
+            <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+            <nav class="nav">
+                <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+                <ul class="nav__list">
+                    <li class="nav__list-item"><a class="nav__list-link" href="approach.html">Главная</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="blog.html">Поиск</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="login.html"> </a></li>
+                    <li class="nav__list-item"><a class="contact__button" href="profile">Профиль</a></li>
+                </ul>
+            </nav>
+            <div class="burger">
+                <span class="espan"></span>
+                <span class="espan"></span>
+                <span class="espan"></span>
+            </div>
+        </div>
+    </header>
+    <section class="profile">
+        <div class="container">
+            <div class="caption">
+                <div class="caption__img"><img src="/img/profile/mbsLogo.PNG"></div>
+            </div>
+            <form class="profile__box">
+                <div class="profile__box-logo"><img src="/img/profile/mbsLogo-1.svg"></div>
+                <div class="profile__box-top">
+                    <div class="profile__box-top-img"><img src="/img/profile/defaultpic.png"></div>
+                    <div class="profile__box-top-title" th:text="${nickname}">username</div>
+                </div>
+                <div class="profile__box-input-button"><a class="submit__button" href="#"><img
+                        class="submit__button-img" src="/img/profile/settings.svg"><span>настроить профиль</span></a>
+                </div>
+                <div class="profile__box-info">
+                    <div class="profile__box-info-item"><img src="/img/profile/instrument.svg">
+                        <div class="profile__box-info-instruments"><span>инструмент:  </span><span th:text="${instrument}"></span></div>
+                    </div>
+                    <div class="profile__box-info-item"><img src="/img/profile/genre.svg">
+                        <div class="profile__box-info-genre"><span>жанр:  </span><span th:text="${genre}"></span></div>
+                    </div>
+                    <div class="profile__box-info-item"><img src="/img/profile/city.svg">
+                        <div class="profile__box-info-town"><span>город:  </span><span th:text="${town}"></span></div>
+                    </div>
+                </div>
+            </form>
+            <div class="profile__portfolio"><a class="profile__portfolio-button" href="#"><img
+                    class="submit__button-img" src="/img/profile/photos.svg"><span>ФОТО</span></a><a
+                    class="profile__portfolio-button" href="#"><img class="submit__button-img"
+                                                                    src="/img/profile/videos.svg"><span>ВИДЕО</span></a>
+            </div>
+            <div class="profile__information"><span class="profile__information-title">Подробная информация</span>
+                <div class="profile__information-box"><span>О себе</span>
+                    <div class="profile__information-box-about">
+                        <p class="profile__information-box-about-text" th:text="${about}"></p>
+                    </div>
+                    <div class="profile__information-box-phone"><img
+                            src="/img/profile/phone.svg">8 <span th:text="${phone}"></span></div>
+                    <div class="profile__information-box-email"><img
+                            src="/img/profile/mail.svg"><span th:text="${email}"></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/js/libs.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="/js/common.min.js"></script>
+</div>
+</body>
+</html>
