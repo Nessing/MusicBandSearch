@@ -1,0 +1,365 @@
+.background{
+    margin: auto;
+    position: relative;
+    width: 645px;
+    height: 804px;
+    background: #CF6862;
+}
+.nav_panel{
+    position: absolute;
+    width: 645px;
+    height: 31px;
+    left: 0px;
+    top: 0px;
+    
+    background: #BF5F59;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.home_cell{
+    position: absolute;
+    width: 33px;
+    height: 31px;
+    left: 597px;
+    top: 0px;
+    
+    background: #A1514C;
+}
+.search_cell_content{
+    position: absolute;
+    width: 39px;
+    height: 18px;
+    left: 52px;
+    top: 8px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.about_cell_link{
+    position: absolute;
+    width: 36px;
+    height: 18px;
+    left: 111px;
+    top: 8px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.notifications_cell{
+    position: absolute;
+    left: 58.14%;
+    right: 39.38%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.messages_cell{
+    position: absolute;
+    left: 63.72%;
+    right: 32.56%;
+    top: 0.87%;
+    bottom: 97.01%;
+    
+    /* background: #FFFFFF; */
+}
+.profile_name_cell{
+    position: absolute;
+    width: 150px;
+    height: 21px;
+    left: 445px;
+    top: -7px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-decoration-line: underline;
+    
+    color: #FFFFFF;
+}
+.profile_cell_home{
+    position: absolute;
+    left: 93.8%;
+    right: 3.41%;
+    top: 0.87%;
+    bottom: 97.01%;
+}
+.profile_board{
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    left: 23px;
+    top: 48px;
+    
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+}
+.logo{
+    position: absolute;
+    width: 74px;
+    height: 50px;
+    left: 32px;
+    top: 53px;
+}
+.main_photo{
+    position: absolute;
+    width: 122px;
+    height: 135px;
+    left: 262px;
+    top: 78px;
+    border-radius: 40px;
+}
+.change_photo_button{
+    position: absolute;
+    width: 136px;
+    height: 18px;
+    left: 255px;
+    top: 222px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    cursor: pointer;    
+    color: #3d3a3a;
+}
+.input_user_name{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 269px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.input_instrument{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 311px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.input_genre{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 353px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.input_city{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 395px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.username_text{
+    position: absolute;
+    width: 116px;
+    height: 18px;
+    left: 60px;
+    top: 264px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.instrument_text{
+    position: absolute;
+    width: 103px;
+    height: 18px;
+    left: 100px;
+    top: 307px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.genre_text{
+    position: absolute;
+    width: 36px;
+    height: 18px;
+    left: 140px;
+    top: 347px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.city_text{
+    position: absolute;
+    width: 37px;
+    height: 18px;
+    left: 139px;
+    top: 390px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.more_info_text{
+    position: absolute;
+    width: 291px;
+    height: 22px;
+    left: 23px;
+    top: 434px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #FFFFFF;
+}
+.more_info_board{
+    position: absolute;
+    width: 600px;
+    height: 383px;
+    left: 23px;
+    top: 490px;
+    
+    background: #1F4F5E;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.25);
+}
+.about_myself_text{
+    position: absolute;
+    width: 59px;
+    height: 18px;
+    left: 67px;
+    top: 495px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #FFFFFF;
+}
+.input_about_myself{
+    position: absolute;
+    width: 568px;
+    height: 90px;
+    left: 39px;
+    top: 529px;
+    
+    background: #e6ebec;
+    
+}
+.input_phone{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 682px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.input_email{
+    position: absolute;
+    width: 270px;
+    height: 26px;
+    left: 188px;
+    top: 723px;
+    
+    background: #FFFFFF;
+    border-radius: 26px;
+}
+.phone_text{
+    position: absolute;
+    width: 103px;
+    height: 18px;
+    left: 73px;
+    top: 686px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.email_text{
+    position: absolute;
+    width: 103px;
+    height: 18px;
+    left: 73px;
+    top: 727px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    
+    color: #FFFFFF;
+}
+.button_save{
+    position: absolute;
+    width: 170px;
+    height: 40px;
+    left: 238px;
+    top: 768px;
+    cursor: pointer;  
+    background: #FFD029;
+    border-radius: 26px;
+}
+.button_save_content{
+    position: absolute;
+    width: 124px;
+    height: 22px;
+    left: 261px;
+    top: 773px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #000000;
+}
