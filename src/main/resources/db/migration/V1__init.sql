@@ -44,7 +44,7 @@ INSERT INTO TOWNS (town) VALUES
 ('Los Angeles');
 
 
-CREATE TABLE USERS
+CREATE TABLE USERS_TABLE
 (
     id             BIGSERIAL PRIMARY KEY,
     email          VARCHAR(150) NOT NULL,
@@ -60,15 +60,15 @@ CREATE TABLE USERS
     about          VARCHAR(255)
 );
 
-INSERT INTO USERS (email, password, nickname, phone, about) VALUES
+INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role)VALUES
 ('graf5@mail.com', '2321', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
-                                                    'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater'),
-('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null);
+                                                    'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1),
+('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null, 1);
 
 
 CREATE TABLE USER_INSTRUMENTS
 (
-    user_id         BIGSERIAL REFERENCES USERS (id),
+    user_id         BIGSERIAL REFERENCES USERS_TABLE (id),
     instrument_id   BIGSERIAL REFERENCES INSTRUMENTS (id)
 );
 
@@ -79,7 +79,7 @@ INSERT INTO USER_INSTRUMENTS (user_id, instrument_id) VALUES
 
 CREATE TABLE USER_GENRES
 (
-    user_id         BIGSERIAL REFERENCES USERS (id),
+    user_id         BIGSERIAL REFERENCES USERS_TABLE (id),
     genre_id        BIGSERIAL REFERENCES GENRES (id)
 );
 
@@ -91,7 +91,7 @@ INSERT INTO USER_GENRES (user_id, genre_id) VALUES
 
 CREATE TABLE USER_TOWN
 (
-    user_id     BIGSERIAL REFERENCES USERS (id),
+    user_id     BIGSERIAL REFERENCES USERS_TABLE (id),
     town_id     BIGSERIAL REFERENCES TOWNS (id)
 );
 
@@ -102,7 +102,7 @@ INSERT INTO USER_TOWN (user_id, town_id) VALUES
 
 CREATE TABLE USER_ROLE
 (
-    user_id     BIGSERIAL REFERENCES USERS (id),
+    user_id     BIGSERIAL REFERENCES USERS_TABLE (id),
     role_id     BIGSERIAL REFERENCES ROLES (id)
 );
 
