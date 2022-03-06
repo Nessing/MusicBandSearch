@@ -13,8 +13,6 @@ import ru.project.musicbandsearch.entities.User;
 import ru.project.musicbandsearch.services.UsersService;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +26,12 @@ public class UsersController {
     @GetMapping("/admin")
     public String admin() {
         return "Admin";
+    }
+
+    @GetMapping("/index")
+    public ModelAndView index() {
+
+        return new ModelAndView("index");
     }
 
     @GetMapping("/id/{id}")
