@@ -1,6 +1,8 @@
 package ru.project.musicbandsearch.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,7 +12,7 @@ import ru.project.musicbandsearch.entities.Town;
 import ru.project.musicbandsearch.entities.User;
 import ru.project.musicbandsearch.services.UsersService;
 
-import java.util.List;
+import javax.sql.DataSource;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +20,19 @@ import java.util.Optional;
 @RequestMapping(value = "api/v1")
 public class UsersController {
     private final UsersService service;
+
+    private final DataSource dataSource;
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "Admin";
+    }
+
+    @GetMapping("/index")
+    public ModelAndView index() {
+
+        return new ModelAndView("index");
+    }
 
     @GetMapping("/id/{id}")
     public Optional<User> getMusicianById(@PathVariable Long id) {
@@ -39,16 +54,25 @@ public class UsersController {
         return new ModelAndView("login");
     }
 
-    @PostMapping("profile{login}")
-    public ModelAndView profile(Model model,
-                                String login,
+    @GetMapping("/logout")
+    public ModelAndView logout(Authentication authentication) {
+        authentication.setAuthenticated(false);
+        System.out.println("51.. LOGOUT");
+        return new ModelAndView("login");
+    }
+
+    @GetMapping("profile")
+    public ModelAndView profile(Authentication authentication,
+                                Model model,
                                 String email,
                                 String instrument,
                                 String genre,
                                 String town,
                                 String phone,
                                 String about) {
+        String login = authentication.getName();
         User user = service.getUserByNickname(login);
+        System.out.println("66.. login: " + login);
         StringBuilder builder = new StringBuilder();
         model.addAttribute("nickname", login);
         try {
@@ -116,12 +140,14 @@ public class UsersController {
         user.setRole(service.getRole(role));
 
         service.saveOrUpdateUser(user);
-        model.addAttribute("nickname", login);
+        System.out.println("138.. " + user);
+        model.addAttribute("nick", login);
         return new ModelAndView("signup_ok");
     }
 
     @PostMapping("/login{login}{password}")
     public ModelAndView loginUser(String login, String password, Model model) {
+        System.out.println("146.. LOGIN");
         // проверка на заполнение всех полей
         if (login == null || password == null) {
             model.addAttribute("loginError", "значения не введены");
@@ -134,7 +160,7 @@ public class UsersController {
                 model.addAttribute("loginError", "Неверный логин или пароль");
                 return new ModelAndView("login"); // страница входа с сообщением ошибки
             }
-        // в ином случае искать пользователя по логину
+            // в ином случае искать пользователя по логину
         } else {
             if (service.loginUserByNickname(login, password)) {
             } else {

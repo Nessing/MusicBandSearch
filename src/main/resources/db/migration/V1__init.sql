@@ -1,60 +1,111 @@
-create table user_roles
+CREATE TABLE ROLES
 (
-    role_id    bigserial primary key,
-    role_title character varying(255)
+    id      SERIAL PRIMARY KEY,
+    role    VARCHAR(20)
 );
-insert into user_roles (role_id, role_title)
-values (1, 'Admin'),
-       (2, 'Group'),
-       (3, 'Musician'),
-       (4, 'Customer');
-create table genres
+
+INSERT INTO ROLES (role) VALUES
+                             ('musician'),
+                             ('band'),
+                             ('costumer');
+
+
+CREATE TABLE INSTRUMENTS
 (
-    genre_id    bigserial primary key,
-    genre_title character varying(255)
+    id         BIGSERIAL PRIMARY KEY,
+    instrument VARCHAR(150)
 );
-insert into genres (genre_id, genre_title)
-values (1, 'Rock'),
-       (2, 'Pop');
-create table instruments
+
+INSERT INTO INSTRUMENTS (instrument) VALUES
+                                         ('guitar'),
+                                         ('drums'),
+                                         ('keyboard');
+
+
+CREATE TABLE GENRES
 (
-    instrument_id    bigserial primary key,
-    instrument_title character varying(255)
+    id    BIGSERIAL PRIMARY KEY,
+    genre VARCHAR(50)
 );
-insert into instruments (instrument_id, instrument_title)
-values (1, 'Piano'),
-       (2, 'Guitar');
-create table towns
+
+INSERT INTO GENRES (genre) VALUES
+                               ('metal'),
+                               ('rock'),
+                               ('glam-metal');
+
+
+CREATE TABLE TOWNS (
+                       id      BIGSERIAL PRIMARY KEY,
+                       town    VARCHAR(150)
+);
+
+INSERT INTO TOWNS (town) VALUES
+                             ('San-Francisco'),
+                             ('Los Angeles');
+
+
+CREATE TABLE USERS_TABLE
 (
-    town_id    bigserial primary key,
-    town_title character varying(255)
+    id             BIGSERIAL PRIMARY KEY,
+    email          VARCHAR(150) NOT NULL,
+    password       VARCHAR(100) NOT NULL,
+    nickname       VARCHAR(75) NOT NULL,
+    first_name     VARCHAR(75),
+    last_name      VARCHAR(75),
+    phone          VARCHAR(20),
+    instrument     INT REFERENCES INSTRUMENTS (id),
+    genre          INT REFERENCES GENRES (id),
+    town           INT REFERENCES TOWNS (id),
+    role           INT REFERENCES ROLES (id),
+    about          VARCHAR(255)
 );
-insert into towns (town_id, town_title)
-values (1, 'Moscow'),
-       (2, 'Saint Petersburg');
-create table users_info
+
+INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role)VALUES
+                                                                           ('graf5@mail.com', '2321', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
+                                                                                                                               'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1),
+                                                                           ('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null, 1);
+
+
+CREATE TABLE USER_INSTRUMENTS
 (
-    info_id    bigserial primary key,
-    user_name  character varying(255),
-    user_email character varying(255),
-    instruments bigserial references instruments (instrument_id),
-    genres bigserial references genres (genre_id),
-    towns bigserial references towns (town_id)
+    user_id         BIGSERIAL REFERENCES USERS_TABLE (id),
+    instrument_id   BIGSERIAL REFERENCES INSTRUMENTS (id)
 );
-insert into users_info (info_id, user_name, user_email, instruments, genres, towns)
-values (1, 'user1', 'user1@mail.ru', 1, 1, 1),
-       (2, 'user2', 'user2@mail.ru', 1, 1, 2),
-       (3, 'user3', 'user3@mail.ru', 1, 2, 2),
-       (4, 'user3', 'user3@mail.ru', 2, 2, 2)
-;
-create table users
+
+INSERT INTO USER_INSTRUMENTS (user_id, instrument_id) VALUES
+                                                          (1, 3),
+                                                          (2, 1);
+
+
+CREATE TABLE USER_GENRES
 (
-    user_id   bigserial primary key,
-    user_info bigserial references users_info (info_id),
-    user_role bigserial references user_roles (role_id)
+    user_id         BIGSERIAL REFERENCES USERS_TABLE (id),
+    genre_id        BIGSERIAL REFERENCES GENRES (id)
 );
-insert into users (user_id, user_info, user_role)
-values (1, 1, 2),
-       (2, 2, 3),
-       (3, 3, 4)
-;
+
+INSERT INTO USER_GENRES (user_id, genre_id) VALUES
+                                                (1, 2),
+                                                (1, 1),
+                                                (2, 3);
+
+
+CREATE TABLE USER_TOWN
+(
+    user_id     BIGSERIAL REFERENCES USERS_TABLE (id),
+    town_id     BIGSERIAL REFERENCES TOWNS (id)
+);
+
+INSERT INTO USER_TOWN (user_id, town_id) VALUES
+                                             (1, 2),
+                                             (2, 1);
+
+
+CREATE TABLE USER_ROLE
+(
+    user_id     BIGSERIAL REFERENCES USERS_TABLE (id),
+    role_id     BIGSERIAL REFERENCES ROLES (id)
+);
+
+INSERT INTO USER_ROLE (user_id, role_id) VALUES
+                                             (1, 1),
+                                             (2, 2);

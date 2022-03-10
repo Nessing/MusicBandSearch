@@ -10,5 +10,9 @@ spring:
       path: /db-console
       settings:
         web-allow-others: false
+  security:
+    user:
+      name: user
+      password: 123
 server:
   port: 8080

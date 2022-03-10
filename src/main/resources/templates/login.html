@@ -31,8 +31,8 @@
             <nav class="nav">
                 <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
                 <ul class="nav__list">
-                    <li class="nav__list-item"><a class="nav__list-link" href="approach.html">Главная</a></li>
-                    <li class="nav__list-item"><a class="nav__list-link" href="blog.html">Поиск</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="index">Главная</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href="#">Поиск</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" href="signup">Регистрация</a></li>
                     <li class="nav__list-item"><a class="contact__button" href="login">Войти</a></li>
                 </ul>
@@ -49,7 +49,8 @@
             <div class="caption">
                 <div class="caption__img"><img src="/img/login/mbsLogo.PNG"></div>
             </div>
-            <form class="login__box" action="login" method="post">
+            <!--            th:attrappend="action=${'/' + nickname}"-->
+            <form class="login__box" th:action="@{/api/v1/login}" method="post">
                 <div class="login__box-top">
                     <div class="login__box-top-title">Авторизация</div>
                     <div class="login__box-top-img"><img src="/img/login/instrument.png"></div>
@@ -63,7 +64,7 @@
                     <input class="login__box-input" type="password" name="password" required placeholder="Пароль">
                 </div>
                 <div class="login__box-input-button">
-                    <button class="submit__button" href="#">войти</button>
+                    <button class="submit__button" type="submit">войти</button>
                     <button class="submit__button" href="#">забыл пароль</button>
                 </div>
             </form>
