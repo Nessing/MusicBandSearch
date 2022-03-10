@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>главная</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Page description">
+    <meta name="keywords" content="page, keywords">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="img/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title">
+    <meta property="og:url">
+    <meta property="og:type" content="website">
+    <meta property="og:image">
+    <meta property="og:description">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <section class="top">
+        <div class="container">
+            <div class="top__box">
+                <div class="top__left">
+                    <div class="top__left-logo"><img src="/img/index/mbsLogo.PNG"></div>
+                    <div class="top__left-title">Добро пожаловать на MUSIC BAND SEARCH!</div>
+                    <div class="top__left-desc">Поиск музыкантов и музыкальных групп на все вкусы!</div>
+                </div>
+                <div class="top__right">
+                    <div class="login__box">
+                        <form class="login__box-input-field" th:action="@{/api/v1/login}" method="post">
+                            <!--                            <span class="login__box-input-error" th:text="${loginError}"></span>-->
+                            <span class="login__box-input-field-span">логин или почта</span>
+                            <input class="login__box-input" type="text" name="login" required placeholder="Логин или пароль">
+                            <div class="login__box-input-field"></div>
+                            <span class="login__box-input-field-span">пароль</span>
+                            <input class="login__box-input" type="password" name="password" required placeholder="Пароль">
+                            <div class="login__box-input-button">
+                                <button class="submit__button" type="submit">войти</button>
+                                <span class="submit__button-span">или</span>
+                                <a class="submit__button-link" th:href="@{/api/v1/signup}">зарегистрироваться</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bottom">
+        <div class="container">
+            <div class="bottom__box">
+                <div class="bottom__top">
+                    <div class="bottom__top-title">для кого это?</div>
+                </div>
+                <div class="bottom__tiles">
+                    <div class="bottom__tiles-item"><img
+                            src="/img/index/singleSinger.png"><span>музыкант</span>
+                        <div class="bottom__tiles-item-desc">
+                            <p>Если хочется найти музыкальную группу</p>
+                        </div>
+                    </div>
+                    <div class="bottom__tiles-item"><img src="/img/index/group.png"><span>группа</span>
+                        <div class="bottom__tiles-item-desc">
+                            <p>Если в группу нужен музыкант</p>
+                        </div>
+                    </div>
+                    <div class="bottom__tiles-item"><img src="/img/index/order.png"><span>заказчик</span>
+                        <div class="bottom__tiles-item-desc">
+                            <p>Если необхоимо найти группу или музыканта для мероприятия</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/js/libs.min.js"></script>
+    <script src="/js/common.min.js"></script>
+</div>
+</body>
+</html>
