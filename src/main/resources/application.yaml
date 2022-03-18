@@ -10,9 +10,7 @@ spring:
       path: /db-console
       settings:
         web-allow-others: false
-  security:
-    user:
-      name: user
-      password: 123
 server:
   port: 8080
+jwt:
+  secret: my_super_secret_frase_with_use_spec_@#!@@

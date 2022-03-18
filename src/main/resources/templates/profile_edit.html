@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>редактор профиля</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Page description">
+    <meta name="keywords" content="page, keywords">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="img/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title">
+    <meta property="og:url">
+    <meta property="og:type" content="website">
+    <meta property="og:image">
+    <meta property="og:description">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="navigation">
+            <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
+            <nav class="nav">
+                <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
+                <ul class="nav__list">
+                    <li class="nav__list-item"><a class="nav__list-link" href="index">Главная</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" th:href="@{/api/v1/logout}"> Выход</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href=""> </a></li>
+                    <li class="nav__list-item"><a class="contact__button" href="profile">Профиль</a></li>
+                </ul>
+            </nav>
+            <div class="burger">
+                <span class="espan"></span>
+                <span class="espan"></span>
+                <span class="espan"></span>
+            </div>
+        </div>
+    </header>
+    <section class="edit">
+        <div class="container">
+            <div class="caption">
+                <div class="caption__img"><img src="/img/edit/mbsLogo.PNG"></div>
+            </div>
+            <form class="edit__box" action="profile_edit" method="post">
+                <div class="edit__box-logo"><img src="/img/edit/mbsLogo-1.svg"></div>
+                <div class="edit__box-top">
+                    <div class="profile__box-top-title" th:text="${nickname}">username</div>
+                    <div class="edit__box-top-img"><img src="/img/edit/defaultpic.png"></div>
+                    <label class="edit__box-top-downloadFile-label" for="downloadPhoto">загрузить фото</label>
+                    <input class="edit__box-top-downloadFile" id="downloadPhoto" type="file"
+                           accept="image/png,image/jpeg">
+                </div>
+                <div class="edit__box-input-field"><span>имя</span>
+                    <input class="edit__box-input" type="text" name="firstName" required th:value="${firstName}">
+                </div>
+                <div class="edit__box-input-field"><span>фамилия</span>
+                    <input class="edit__box-input" type="text" name="lastName" th:value="${lastName}">
+                </div>
+                <div class="edit__box-input-field"><span>инструменты (через запятую)</span>
+                    <input class="edit__box-input" type="text" name="instrument" th:value="${instrument}">
+                </div>
+                <div class="edit__box-input-field"><span>жанры (через запятую)</span>
+                    <input class="edit__box-input" type="text" name="genre" th:value="${genre}">
+                </div>
+                <div class="edit__box-input-field"><span>город</span>
+                    <input class="edit__box-input" type="text" name="town" th:value="${town}">
+                </div>
+                <div class="edit__box-input-field"><span>телефон</span>
+                    <input class="edit__box-input" type="number" name="phone"
+                           th:value="${phone}">
+                </div>
+                <div class="signup__box-input-role">
+                    <div class="block">
+                        <input class="signup__box-input" type="radio" required id="musician" name="role" value="musician" th:checked="${roleMusician}">
+                        <label for="musician">музыкант</label>
+                    </div>
+                    <div class="block">
+                        <input class="signup__box-input" type="radio" required id="band" name="role" value="band" th:checked="${roleBand}">
+                        <label for="band">группа</label>
+                    </div>
+                    <div class="block">
+                        <input class="signup__box-input" type="radio" required id="costumer" name="role" value="costumer" th:checked="${roleCostumer}">
+                        <label for="costumer">заказчик</label>
+                    </div>
+                </div>
+                <div class="edit__box-input-field"><span>о себе</span>
+                    <textarea class="edit__box-input edit__box-input-area" type="about" name="about"
+                              placeholder="О себе..." th:text="${about}"></textarea>
+                </div>
+                <div class="edit__box-input-field"><span>пароль*</span>
+                    <input class="edit__box-input" type="password" name="password" required placeholder="Пароль">
+                </div>
+                <div class="edit__box-input-button">
+                    <button type="submit" class="submit__button">сохранить</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="/js/libs.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="/js/common.min.js"></script>
+</div>
+</body>
+</html>

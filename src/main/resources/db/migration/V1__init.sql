@@ -61,7 +61,7 @@ CREATE TABLE USERS_TABLE
 );
 
 INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role)VALUES
-('graf5@mail.com', '2321', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
+('graf5@mail.com', '$2a$12$e.zXKJXPYz.ypR8J0lfgmehp/SpkoBlUY0flPlSfw7jrLjC.S1XI.', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
                                                     'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1),
 ('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null, 1);
 

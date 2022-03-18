@@ -27,14 +27,13 @@
 <div class="wrapper">
     <header class="header">
         <div class="navigation">
-            <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+            <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
             <nav class="nav">
-                <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+                <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
                 <ul class="nav__list">
                     <li class="nav__list-item"><a class="nav__list-link" href="index">Главная</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" href="#">Поиск</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" href="signup">Регистрация</a></li>
-                    <li class="nav__list-item"><a class="contact__button" href="login">Войти</a></li>
                 </ul>
             </nav>
             <div class="burger">
@@ -58,7 +57,7 @@
                 <div class="login__box-input-field">
                     <span class="login__box-input-error" th:text="${loginError}"></span>
                     <span>логин или почта</span>
-                    <input class="login__box-input" type="text" name="login" required placeholder="Логин или пароль">
+                    <input class="login__box-input" type="text" name="username" required placeholder="Логин или пароль">
                 </div>
                 <div class="login__box-input-field"><span>пароль</span>
                     <input class="login__box-input" type="password" name="password" required placeholder="Пароль">

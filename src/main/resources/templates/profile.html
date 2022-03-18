@@ -27,9 +27,9 @@
 <div class="wrapper">
     <header class="header">
         <div class="navigation">
-            <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+            <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
             <nav class="nav">
-                <div class="logo"><a href="index.html"><img src="/img/signup/mbsLogo.PNG"></a></div>
+                <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
                 <ul class="nav__list">
                     <li class="nav__list-item"><a class="nav__list-link" href="index">Главная</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" th:href="@{/api/v1/logout}"> Выход</a></li>
@@ -52,15 +52,17 @@
             <form class="profile__box">
                 <div class="profile__box-logo"><img src="/img/profile/mbsLogo-1.svg"></div>
                 <div class="profile__box-top">
-                    <div class="profile__box-top-img"><img src="/img/profile/defaultpic.png"></div>
                     <div class="profile__box-top-title" th:text="${nickname}">username</div>
+                    <div class="profile__box-top-img"><img src="/img/profile/defaultpic.png"></div>
+                    <div class="profile__box-top-title" th:text="${name}"></div>
                 </div>
-                <div class="profile__box-input-button"><a class="submit__button" href="#"><img
-                        class="submit__button-img" src="/img/profile/settings.svg"><span>настроить профиль</span></a>
+                <div class="profile__box-input-button"><a class="submit__button" href="profile_edit">
+                    <img class="submit__button-img" src="/img/profile/settings.svg"><span>настроить профиль</span></a>
                 </div>
                 <div class="profile__box-info">
                     <div class="profile__box-info-item"><img src="/img/profile/instrument.svg">
-                        <div class="profile__box-info-instruments"><span>инструмент:  </span><span th:text="${instrument}"></span></div>
+                        <div class="profile__box-info-instruments"><span>инструмент:  </span>
+                            <span th:text="${instrument}"></span></div>
                     </div>
                     <div class="profile__box-info-item"><img src="/img/profile/genre.svg">
                         <div class="profile__box-info-genre"><span>жанр:  </span><span th:text="${genre}"></span></div>
@@ -81,7 +83,7 @@
                         <p class="profile__information-box-about-text" th:text="${about}"></p>
                     </div>
                     <div class="profile__information-box-phone"><img
-                            src="/img/profile/phone.svg">8 <span th:text="${phone}"></span></div>
+                            src="/img/profile/phone.svg"><span th:text="${phone}"></span></div>
                     <div class="profile__information-box-email"><img
                             src="/img/profile/mail.svg"><span th:text="${email}"></span></div>
                 </div>
