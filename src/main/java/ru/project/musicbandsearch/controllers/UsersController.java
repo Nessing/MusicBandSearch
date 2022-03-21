@@ -56,6 +56,11 @@ public class UsersController {
         return new ModelAndView("signup");
     }
 
+    @GetMapping("search")
+    public ModelAndView search() {
+        return new ModelAndView("search");
+    }
+
     @GetMapping("/logout")
     public ModelAndView logout(Authentication authentication) {
         authentication.setAuthenticated(false);

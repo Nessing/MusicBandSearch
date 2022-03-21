@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" prefix="og: http://ogp.me/ns#">
+<head>
+    <title>blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Page description">
+    <meta name="keywords" content="page, keywords">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="img/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title">
+    <meta property="og:url">
+    <meta property="og:type" content="website">
+    <meta property="og:image">
+    <meta property="og:description">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="navigation">
+            <div class="logo"><img src="/img/search/mbsLogo.PNG"></div>
+            <nav class="nav">
+                <div class="logo"><img src="/img/search/mbsLogo.PNG"></div>
+                <ul class="nav__list">
+                    <li class="nav__list-item"><a class="nav__list-link" href="search">Поиск</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" th:href="@{/api/v1/logout}">Выход</a></li>
+                    <li class="nav__list-item"><a class="nav__list-link" href=""> </a></li>
+                    <li class="nav__list-item"><a class="contact__button" href="profile">Профиль</a></li>
+                </ul>
+            </nav>
+            <div class="burger">
+                <span class="espan"></span>
+                <span class="espan"></span>
+                <span class="espan"></span>
+            </div>
+        </div>
+    </header>
+    <section class="search">
+        <div class="container">
+            <div class="caption">
+                <div class="caption__img"><img src="/img/search/mbsLogo.PNG"></div>
+            </div>
+            <form class="search__box">
+                <div class="search__box-top">
+                    <div class="search__box-top-title">поиск</div>
+                    <div class="search__box-top-img"><img src="/img/search/search.svg"></div>
+                </div>
+                <div class="search__box-input-field"><span>ник</span>
+                    <input class="search__box-input" type="text" placeholder="по нику">
+                </div>
+                <div class="search__box-input-field"><span>кого искать?</span>
+                    <select class="search__box-select">
+                        <option>музыканта</option>
+                        <option>группу</option>
+                        <option>заказчика</option>
+                    </select>
+                </div>
+                <div class="search__box-input-field"><span>жанр</span>
+                    <select class="search__box-select">
+                        <option>не выбран</option>
+                        <option>рок</option>
+                        <option>метал</option>
+                        <option>фанк</option>
+                    </select>
+                </div>
+                <div class="search__box-input-field"><span>инструмент</span>
+                    <select class="search__box-select">
+                        <option>не выбран</option>
+                        <option>гитара</option>
+                        <option>барабаны</option>
+                        <option>вокал</option>
+                        <option>скрипка</option>
+                        <option>синтезатор</option>
+                    </select>
+                </div>
+                <div class="search__box-input-field"><span>город</span>
+                    <select class="search__box-select">
+                        <option>не выбран</option>
+                        <option>Москва</option>
+                        <option>New York</option>
+                        <option>Санкт-Петебург</option>
+                    </select>
+                </div>
+                <div class="search__box-input-button">
+                  <button type="submit" class="submit__button">поиск</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="/js/libs.min.js"></script>
+    <script src="/js/common.min.js"></script>
+</div>
+</body>
+</html>

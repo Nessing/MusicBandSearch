@@ -40,6 +40,7 @@ public class DBSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/login/**", "/api/v1/index/**", "/api/v1/signup/**", "/api/v1/login_error").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/signup/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/login/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/index/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/api/v1/login")

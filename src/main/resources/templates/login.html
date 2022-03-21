@@ -32,7 +32,6 @@
                 <div class="logo"><a href="index.html"><img src="/img/index/mbsLogo.PNG"></a></div>
                 <ul class="nav__list">
                     <li class="nav__list-item"><a class="nav__list-link" href="index">Главная</a></li>
-                    <li class="nav__list-item"><a class="nav__list-link" href="#">Поиск</a></li>
                     <li class="nav__list-item"><a class="nav__list-link" href="signup">Регистрация</a></li>
                 </ul>
             </nav>
@@ -56,8 +55,8 @@
                 </div>
                 <div class="login__box-input-field">
                     <span class="login__box-input-error" th:text="${loginError}"></span>
-                    <span>логин или почта</span>
-                    <input class="login__box-input" type="text" name="username" required placeholder="Логин или пароль">
+                    <span>эл. почта</span>
+                    <input class="login__box-input" type="text" name="username" required placeholder="email">
                 </div>
                 <div class="login__box-input-field"><span>пароль</span>
                     <input class="login__box-input" type="password" name="password" required placeholder="Пароль">
