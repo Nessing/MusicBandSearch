@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" prefix="og: http://ogp.me/ns#">
+<html lang="ru" prefix="og: http://ogp.me/ns#" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>blog</title>
+    <title>поиск</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="Page description">
@@ -83,11 +83,17 @@
                     </select>
                 </div>
                 <div class="search__box-input-field"><span>город</span>
-                    <select class="search__box-select">
+<!--                    <select class="search__box-select">-->
+<!--                        <option>не выбран</option>-->
+<!--                        <option>Москва</option>-->
+<!--                        <option>New York</option>-->
+<!--                        <option>Санкт-Петебург</option>-->
+<!--                    </select>-->
+                    <select class="search__box-select" name="town">
                         <option>не выбран</option>
-                        <option>Москва</option>
-                        <option>New York</option>
-                        <option>Санкт-Петебург</option>
+                        <option th:each="town : ${allTowns}">
+                            <span th:text="${town.getTown()}"></span>
+                        </option>
                     </select>
                 </div>
                 <div class="search__box-input-button">

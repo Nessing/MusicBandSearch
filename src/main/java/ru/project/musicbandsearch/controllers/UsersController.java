@@ -56,8 +56,13 @@ public class UsersController {
         return new ModelAndView("signup");
     }
 
+    // в разаботке
     @GetMapping("search")
-    public ModelAndView search() {
+    public ModelAndView search(Model model) {
+        List<User> users = service.getAllUsers();
+        List<Town> towns = service.getAllTowns();
+        model.addAttribute("allTowns", towns);
+        model.addAttribute("allUsers", users);
         return new ModelAndView("search");
     }
 

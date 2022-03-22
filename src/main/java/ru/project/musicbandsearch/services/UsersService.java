@@ -89,6 +89,14 @@ public class UsersService {
         return false;
     }
 
+    public List<User> getAllUsers() {
+        return usersRepository.findAll();
+    }
+
+    public List<Town> getAllTowns() {
+        return townsRepository.findAll();
+    }
+
     public Town getTown(String town) {
         return townsRepository.findTownByTown(town);
     }
