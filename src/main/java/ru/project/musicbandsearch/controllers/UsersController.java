@@ -74,6 +74,7 @@ public class UsersController {
         if (nicknameSearch != "") {
             User user = service.getUserByNickname(nicknameSearch);
             if (user != null) {
+                model.addAttribute("id", user.getId());
                 model.addAttribute("displayBlock", "display: block");
                 model.addAttribute("nicknameSearch", user.getNickname());
                 model.addAttribute("role", user.getRole().getRole());
@@ -167,6 +168,47 @@ public class UsersController {
     public ModelAndView profile(Authentication authentication,
                                 Model model) {
         User user = service.getUserByEmail(authentication.getName());
+        String login = user.getNickname();
+        StringBuilder builder = new StringBuilder();
+        model.addAttribute("nickname", login);
+        try {
+            for (Instrument i : user.getInstrument()) {
+                builder.append(i.getInstrument() + ", ");
+            }
+        } catch (NullPointerException e) {
+            System.err.println("У пользователя не установлены инструменты");
+        }
+        model.addAttribute("instrument", checkStrBuilder(builder));
+
+        builder = new StringBuilder();
+        try {
+            for (Genre g : user.getGenre()) {
+                builder.append(g.getGenre() + ", ");
+            }
+        } catch (NullPointerException e) {
+            System.err.println("У пользователя не установлены жанры");
+        }
+        model.addAttribute("genre", checkStrBuilder(builder));
+        model.addAttribute("town", user.getTown().getTown());
+        model.addAttribute("phone", user.getPhone());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("about", user.getAbout());
+        builder = new StringBuilder();
+        builder.append(user.getFirstName());
+        try {
+            builder.append(" " + user.getLastName());
+        } catch (NullPointerException e) {
+            System.err.println("У пользователя нет фамилии");
+        }
+        model.addAttribute("name", builder);
+        return new ModelAndView("profile");
+    }
+
+    @GetMapping("profile/{id}")
+    public ModelAndView profile(@PathVariable Long id,
+                                Model model) {
+//        User user = service.getUserByEmail(authentication.getName());
+        User user = service.findUserById(Long.valueOf(id)).get();
         String login = user.getNickname();
         StringBuilder builder = new StringBuilder();
         model.addAttribute("nickname", login);

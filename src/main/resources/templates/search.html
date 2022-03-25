@@ -123,30 +123,32 @@
             <span th:text="${errorSearch}"></span>
 
             <div class="search__result">
-                <div class="search__result-element" th:each="users_Role : ${usersRole}">
-                    <div class="search__result-element-item">
-                        <div class="search__result-element-item-inner">
-                            <span style="text-decoration: underline" th:text="${users_Role.getNickname()}">Nickname</span>
+                <a style="color: #fff" th:each="users_Role : ${usersRole}" href="/api/v1/profile/" th:attrappend="href=${users_Role.getId()}">
+                    <div class="search__result-element">
+                        <div class="search__result-element-item">
+                            <div class="search__result-element-item-inner">
+                                <span style="text-decoration: underline" th:text="${users_Role.getNickname()}">Nickname</span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item">
+                            <div class="search__result-element-item-inner">
+                                <span th:text="${users_Role.getTown().getTown()}">Town</span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item result-box">
+                            <div class="result-box-item"><span>инструменты:</span></div>
+                            <div class="result-box-item result-box-item-list">
+                                <span th:each="user_instrument : ${users_Role.getInstrument()}" th:text="${user_instrument.getInstrument()}"></span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item result-box">
+                            <div class="result-box-item"><span>жанры:</span></div>
+                            <div class="result-box-item result-box-item-list">
+                                <span th:each="user_genre : ${users_Role.getGenre()}" th:text="${user_genre.getGenre()}"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="search__result-element-item">
-                        <div class="search__result-element-item-inner">
-                            <span th:text="${users_Role.getTown().getTown()}">Town</span>
-                        </div>
-                    </div>
-                    <div class="search__result-element-item result-box">
-                        <div class="result-box-item"><span>инструменты:</span></div>
-                        <div class="result-box-item result-box-item-list">
-                            <span th:each="user_instrument : ${users_Role.getInstrument()}" th:text="${user_instrument.getInstrument()}"></span>
-                        </div>
-                    </div>
-                    <div class="search__result-element-item result-box">
-                        <div class="result-box-item"><span>жанры:</span></div>
-                        <div class="result-box-item result-box-item-list">
-                            <span th:each="user_genre : ${users_Role.getGenre()}" th:text="${user_genre.getGenre()}"></span>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
