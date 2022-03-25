@@ -59,11 +59,102 @@ public class UsersController {
     // в разаботке
     @GetMapping("search")
     public ModelAndView search(Model model) {
+        getFormSearchInputs(model);
+        model.addAttribute("displayBlock", "display: none");
+        return new ModelAndView("search");
+    }
+
+    @PostMapping("/search{nicknameSearch}{role}{genre}{instrument}{town}")
+    public ModelAndView search(Model model,
+                               String nicknameSearch,
+                               String role,
+                               String genre,
+                               String instrument,
+                               String town) {
+        if (nicknameSearch != "") {
+            User user = service.getUserByNickname(nicknameSearch);
+            if (user != null) {
+                model.addAttribute("displayBlock", "display: block");
+                model.addAttribute("nicknameSearch", user.getNickname());
+                model.addAttribute("role", user.getRole().getRole());
+                model.addAttribute("genre", user.getGenre());
+                model.addAttribute("instrument", user.getInstrument());
+                model.addAttribute("town", user.getTown().getTown());
+            } else {
+                model.addAttribute("displayBlock", "display: none");
+                model.addAttribute("errorSearch", "пользователь с таким ником не найден");
+            }
+        } else {
+            model.addAttribute("displayBlock", "display: none");
+            List<User> usersByRole = service.getAllUsersByRole(role);
+            Genre genreContains = service.getGenre(genre);
+            Instrument instrumentContains = service.getInstrument(instrument);
+            Town townContains = service.getTown(town);
+            // если выбран жанр
+            if (genre != "") {
+                if (usersByRole.size() > 0) {
+                    for (int i = 0; i < usersByRole.size(); i++) {
+                        // у каждого пользователя проверяем наличие выбранного жанра
+                        if (!usersByRole.get(i).getGenre().contains(genreContains)) {
+                            usersByRole.remove(i); // если нет соответствия, то удаляем из списка
+                            i--; // после удаления переводим курсор на -1 (остаемся на текущей позиции)
+                        }
+                        // если массив пустой, тогда выходим из цикла
+                        if (usersByRole.size() <= 0) {
+                            break;
+                        }
+                    }
+                }
+            }
+            // если выбран инструмент
+            if (instrument != "") {
+                if (usersByRole.size() > 0) {
+                    for (int i = 0; i < usersByRole.size(); i++) {
+                        // у каждого пользователя проверяем наличие выбранного инструмента
+                        if (!usersByRole.get(i).getInstrument().contains(instrumentContains)) {
+                            usersByRole.remove(i); // если нет соответствия, то удаляем из списка
+                            i--; // после удаления переводим курсор на -1 (остаемся на текущей позиции)
+                        }
+                        // если массив пустой, тогда выходим из цикла
+                        if (usersByRole.size() <= 0) {
+                            break;
+                        }
+                    }
+                }
+            }
+            // если выбран город
+            if (town != "") {
+                if (usersByRole.size() > 0) {
+                    for (int i = 0; i < usersByRole.size(); i++) {
+                        // у каждого пользователя проверяем на совпадение выбранного города
+                        if (!usersByRole.get(i).getTown().equals(townContains)) {
+                            usersByRole.remove(i); // если нет соответствия, то удаляем из списка
+                            i--; // после удаления переводим курсор на -1 (остаемся на текущей позиции)
+                        }
+                        // если массив пустой, тогда выходим из цикла
+                        if (usersByRole.size() <= 0) {
+                            break;
+                        }
+                    }
+                }
+            }
+            model.addAttribute("usersRole", usersByRole);
+        }
+        getFormSearchInputs(model);
+        return new ModelAndView("search");
+    }
+
+    // метод для получения данных из БД в списки для формы поиска
+    private Model getFormSearchInputs(Model model) {
         List<User> users = service.getAllUsers();
         List<Town> towns = service.getAllTowns();
+        List<Instrument> instruments = service.getAllInstruments();
+        List<Genre> genres = service.getAllGenres();
         model.addAttribute("allTowns", towns);
         model.addAttribute("allUsers", users);
-        return new ModelAndView("search");
+        model.addAttribute("allInstruments", instruments);
+        model.addAttribute("allGenres", genres);
+        return model;
     }
 
     @GetMapping("/logout")
@@ -154,7 +245,7 @@ public class UsersController {
     // метод убирает последюю запятую у StringBuilder
     private String checkStrBuilder(StringBuilder builder) {
         if (builder.indexOf(", ") != -1) {
-            builder.deleteCharAt(builder.length()-2);
+            builder.deleteCharAt(builder.length() - 2);
         }
         return builder.toString();
     }

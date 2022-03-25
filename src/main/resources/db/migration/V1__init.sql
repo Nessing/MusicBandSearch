@@ -41,6 +41,7 @@ CREATE TABLE TOWNS (
 
 INSERT INTO TOWNS (town) VALUES
 ('San-Francisco'),
+('New York'),
 ('Los Angeles');
 
 
@@ -63,7 +64,9 @@ CREATE TABLE USERS_TABLE
 INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role)VALUES
 ('graf5@mail.com', '$2a$12$e.zXKJXPYz.ypR8J0lfgmehp/SpkoBlUY0flPlSfw7jrLjC.S1XI.', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
                                                     'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1),
-('motleycrue@gmail.com', 'gt23s', 'Motley Crue', null, null, 1);
+('stieve@gmail.com', 'gt23s', 'stieve', null, null, 1),
+('farcry@gmail.com', 'gt23s', 'farcry', null, null, 2),
+('vandal@gmail.com', 'gt23s', 'vandal', null, null, 2);
 
 
 CREATE TABLE USER_INSTRUMENTS
@@ -74,7 +77,11 @@ CREATE TABLE USER_INSTRUMENTS
 
 INSERT INTO USER_INSTRUMENTS (user_id, instrument_id) VALUES
 (1, 3),
-(2, 1);
+(1, 1),
+(2, 1),
+(3, 2),
+(3, 1),
+(4, 3);
 
 
 CREATE TABLE USER_GENRES
@@ -86,7 +93,10 @@ CREATE TABLE USER_GENRES
 INSERT INTO USER_GENRES (user_id, genre_id) VALUES
 (1, 2),
 (1, 1),
-(2, 3);
+(2, 3),
+(3, 2),
+(3, 3),
+(4, 2);
 
 
 CREATE TABLE USER_TOWN
@@ -97,7 +107,9 @@ CREATE TABLE USER_TOWN
 
 INSERT INTO USER_TOWN (user_id, town_id) VALUES
 (1, 2),
-(2, 1);
+(2, 1),
+(3, 1),
+(4, 3);
 
 
 CREATE TABLE USER_ROLE
@@ -108,4 +120,6 @@ CREATE TABLE USER_ROLE
 
 INSERT INTO USER_ROLE (user_id, role_id) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 1),
+(4, 1);

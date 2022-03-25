@@ -49,57 +49,105 @@
             <div class="caption">
                 <div class="caption__img"><img src="/img/search/mbsLogo.PNG"></div>
             </div>
-            <form class="search__box">
+            <form class="search__box" action="search" method="post">
                 <div class="search__box-top">
                     <div class="search__box-top-title">поиск</div>
                     <div class="search__box-top-img"><img src="/img/search/search.svg"></div>
                 </div>
                 <div class="search__box-input-field"><span>ник</span>
-                    <input class="search__box-input" type="text" placeholder="по нику">
+                    <input class="search__box-input" name="nicknameSearch" type="text" placeholder="по нику">
                 </div>
                 <div class="search__box-input-field"><span>кого искать?</span>
-                    <select class="search__box-select">
-                        <option>музыканта</option>
-                        <option>группу</option>
-                        <option>заказчика</option>
+                    <select class="search__box-select" name="role">
+                        <option value="musician">музыканта</option>
+                        <option value="band">группу</option>
+                        <option value="costumer">заказчика</option>
                     </select>
                 </div>
                 <div class="search__box-input-field"><span>жанр</span>
-                    <select class="search__box-select">
-                        <option>не выбран</option>
-                        <option>рок</option>
-                        <option>метал</option>
-                        <option>фанк</option>
+                    <select class="search__box-select" name="genre">
+                        <option value="">не выбран</option>
+                        <option th:each="genre : ${allGenres}">
+                            <span th:text="${genre.getGenre()}"></span>
+                        </option>
                     </select>
                 </div>
                 <div class="search__box-input-field"><span>инструмент</span>
-                    <select class="search__box-select">
-                        <option>не выбран</option>
-                        <option>гитара</option>
-                        <option>барабаны</option>
-                        <option>вокал</option>
-                        <option>скрипка</option>
-                        <option>синтезатор</option>
+                    <select class="search__box-select" name="instrument">
+                        <option value="">не выбран</option>
+                        <option th:each="instrument : ${allInstruments}">
+                            <span th:text="${instrument.getInstrument()}"></span>
+                        </option>
                     </select>
                 </div>
                 <div class="search__box-input-field"><span>город</span>
-<!--                    <select class="search__box-select">-->
-<!--                        <option>не выбран</option>-->
-<!--                        <option>Москва</option>-->
-<!--                        <option>New York</option>-->
-<!--                        <option>Санкт-Петебург</option>-->
-<!--                    </select>-->
                     <select class="search__box-select" name="town">
-                        <option>не выбран</option>
+                        <option value="">не выбран</option>
                         <option th:each="town : ${allTowns}">
                             <span th:text="${town.getTown()}"></span>
                         </option>
                     </select>
                 </div>
                 <div class="search__box-input-button">
-                  <button type="submit" class="submit__button">поиск</button>
+                    <button type="submit" class="submit__button">поиск</button>
                 </div>
             </form>
+            <br>
+            <!--получение пользователя по нику-->
+            <div class="search__result" th:style="${displayBlock}">
+                <div class="search__result-element">
+                    <div class="search__result-element-item">
+                        <div class="search__result-element-item-inner">
+                            <span th:text="${nicknameSearch}">Nickname</span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item">
+                        <div class="search__result-element-item-inner">
+                            <span th:text="${town}">Town</span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item result-box">
+                        <div class="result-box-item"><span>инструменты:</span></div>
+                        <div class="result-box-item result-box-item-list">
+                            <span th:each="user_instrument : ${instrument}" th:text="${user_instrument.getInstrument()}"></span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item result-box">
+                        <div class="result-box-item"><span>жанры:</span></div>
+                        <div class="result-box-item result-box-item-list">
+                            <span th:each="user_genre : ${genre}" th:text="${user_genre.getGenre()}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span th:text="${errorSearch}"></span>
+
+            <div class="search__result">
+                <div class="search__result-element" th:each="users_Role : ${usersRole}">
+                    <div class="search__result-element-item">
+                        <div class="search__result-element-item-inner">
+                            <span style="text-decoration: underline" th:text="${users_Role.getNickname()}">Nickname</span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item">
+                        <div class="search__result-element-item-inner">
+                            <span th:text="${users_Role.getTown().getTown()}">Town</span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item result-box">
+                        <div class="result-box-item"><span>инструменты:</span></div>
+                        <div class="result-box-item result-box-item-list">
+                            <span th:each="user_instrument : ${users_Role.getInstrument()}" th:text="${user_instrument.getInstrument()}"></span>
+                        </div>
+                    </div>
+                    <div class="search__result-element-item result-box">
+                        <div class="result-box-item"><span>жанры:</span></div>
+                        <div class="result-box-item result-box-item-list">
+                            <span th:each="user_genre : ${users_Role.getGenre()}" th:text="${user_genre.getGenre()}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <script src="/js/libs.min.js"></script>

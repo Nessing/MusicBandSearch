@@ -89,12 +89,34 @@ public class UsersService {
         return false;
     }
 
+    /** Получение данных с БД в список **/
     public List<User> getAllUsers() {
         return usersRepository.findAll();
     }
 
     public List<Town> getAllTowns() {
         return townsRepository.findAll();
+    }
+
+    public List<Instrument> getAllInstruments() {
+        return instrumentsRepository.findAll();
+    }
+
+    public List<Genre> getAllGenres() {
+        return genresRepository.findAll();
+    }
+    /****/
+
+    public List<User> getAllUsersByRole(String role) {
+        return usersRepository.findUsersByRole_Role(role);
+    }
+
+    public List<User> getAllUsersByGenre(String genre) {
+        return usersRepository.findUsersByGenre_Genre(genre);
+    }
+
+    public List<User> getAll(String role, String genre) {
+        return usersRepository.findUsersByRole_RoleAndGenre_Genre(role, genre);
     }
 
     public Town getTown(String town) {
@@ -121,5 +143,4 @@ public class UsersService {
     public Role getRole(String role) {
         return rolesRepository.findRoleByRole(role);
     }
-
 }
