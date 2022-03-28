@@ -95,39 +95,45 @@
             <br>
             <!--получение пользователя по нику-->
             <div class="search__result" th:style="${displayBlock}">
-                <div class="search__result-element">
-                    <div class="search__result-element-item">
-                        <div class="search__result-element-item-inner">
-                            <span th:text="${nicknameSearch}">Nickname</span>
+                <a style="color: #fff" target="_blank" href="/api/v1/user/"
+                   th:attrappend="href=${userId}">
+                    <div class="search__result-element">
+                        <div class="search__result-element-item">
+                            <div class="search__result-element-item-inner">
+                                <span th:text="${nicknameSearch}">Nickname</span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item">
+                            <div class="search__result-element-item-inner">
+                                <span th:text="${town}">Town</span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item result-box">
+                            <div class="result-box-item"><span>инструменты:</span></div>
+                            <div class="result-box-item result-box-item-list">
+                                <span th:each="user_instrument : ${instrument}"
+                                      th:text="${user_instrument.getInstrument()}"></span>
+                            </div>
+                        </div>
+                        <div class="search__result-element-item result-box">
+                            <div class="result-box-item"><span>жанры:</span></div>
+                            <div class="result-box-item result-box-item-list">
+                                <span th:each="user_genre : ${genre}" th:text="${user_genre.getGenre()}"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="search__result-element-item">
-                        <div class="search__result-element-item-inner">
-                            <span th:text="${town}">Town</span>
-                        </div>
-                    </div>
-                    <div class="search__result-element-item result-box">
-                        <div class="result-box-item"><span>инструменты:</span></div>
-                        <div class="result-box-item result-box-item-list">
-                            <span th:each="user_instrument : ${instrument}" th:text="${user_instrument.getInstrument()}"></span>
-                        </div>
-                    </div>
-                    <div class="search__result-element-item result-box">
-                        <div class="result-box-item"><span>жанры:</span></div>
-                        <div class="result-box-item result-box-item-list">
-                            <span th:each="user_genre : ${genre}" th:text="${user_genre.getGenre()}"></span>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
             <span th:text="${errorSearch}"></span>
 
             <div class="search__result">
-                <a style="color: #fff" th:each="users_Role : ${usersRole}" href="/api/v1/profile/" th:attrappend="href=${users_Role.getId()}">
+                <a style="color: #fff" th:each="users_Role : ${usersRole}" href="/api/v1/user/" target="_blank"
+                   th:attrappend="href=${users_Role.getId()}">
                     <div class="search__result-element">
                         <div class="search__result-element-item">
                             <div class="search__result-element-item-inner">
-                                <span style="text-decoration: underline" th:text="${users_Role.getNickname()}">Nickname</span>
+                                <span style="text-decoration: underline"
+                                      th:text="${users_Role.getNickname()}">Nickname</span>
                             </div>
                         </div>
                         <div class="search__result-element-item">
@@ -138,13 +144,15 @@
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>инструменты:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_instrument : ${users_Role.getInstrument()}" th:text="${user_instrument.getInstrument()}"></span>
+                                <span th:each="user_instrument : ${users_Role.getInstrument()}"
+                                      th:text="${user_instrument.getInstrument()}"></span>
                             </div>
                         </div>
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>жанры:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_genre : ${users_Role.getGenre()}" th:text="${user_genre.getGenre()}"></span>
+                                <span th:each="user_genre : ${users_Role.getGenre()}"
+                                      th:text="${user_genre.getGenre()}"></span>
                             </div>
                         </div>
                     </div>

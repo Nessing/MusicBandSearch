@@ -2,10 +2,10 @@ package ru.project.musicbandsearch.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ru.project.musicbandsearch.entities.Genre;
 import ru.project.musicbandsearch.entities.Instrument;
@@ -74,7 +74,7 @@ public class UsersController {
         if (nicknameSearch != "") {
             User user = service.getUserByNickname(nicknameSearch);
             if (user != null) {
-                model.addAttribute("id", user.getId());
+                model.addAttribute("userId", user.getId());
                 model.addAttribute("displayBlock", "display: block");
                 model.addAttribute("nicknameSearch", user.getNickname());
                 model.addAttribute("role", user.getRole().getRole());
@@ -188,6 +188,9 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя не установлены жанры");
         }
+
+        changeRoleRus(model, user);
+
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
         model.addAttribute("phone", user.getPhone());
@@ -204,10 +207,9 @@ public class UsersController {
         return new ModelAndView("profile");
     }
 
-    @GetMapping("profile/{id}")
+    @GetMapping("user/{id}")
     public ModelAndView profile(@PathVariable Long id,
                                 Model model) {
-//        User user = service.getUserByEmail(authentication.getName());
         User user = service.findUserById(Long.valueOf(id)).get();
         String login = user.getNickname();
         StringBuilder builder = new StringBuilder();
@@ -219,6 +221,11 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя не установлены инструменты");
         }
+        if (user.getRole().getRole().equals("musician")) {
+            model.addAttribute("roleInstrument", "владеет инструментами:  ");
+        } else {
+            model.addAttribute("roleInstrument", "ищет музыкантов:  ");
+        }
         model.addAttribute("instrument", checkStrBuilder(builder));
 
         builder = new StringBuilder();
@@ -229,6 +236,9 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя не установлены жанры");
         }
+
+        changeRoleRus(model, user);
+
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
         model.addAttribute("phone", user.getPhone());
@@ -242,7 +252,14 @@ public class UsersController {
             System.err.println("У пользователя нет фамилии");
         }
         model.addAttribute("name", builder);
-        return new ModelAndView("profile");
+        return new ModelAndView("user");
+    }
+
+    // метод изменяет название роли
+    private void changeRoleRus(Model model, User user) {
+        if (user.getRole().getRole().equals("musician")) model.addAttribute("role", "музыкант");
+        else if (user.getRole().getRole().equals("band")) model.addAttribute("role", "группа");
+        else if (user.getRole().getRole().equals("costumer")) model.addAttribute("role", "заказчик");
     }
 
     @GetMapping("/profile_edit")
@@ -293,11 +310,12 @@ public class UsersController {
     }
 
 
-    @PostMapping("/profile_edit{firstName}{lastName}{town}{phone}{instrument}{genre}{role}{about}")
+    @PostMapping("/profile_edit{firstName}{lastName}{photo}{town}{phone}{instrument}{genre}{role}{about}")
     public ModelAndView updateUser(Authentication authentication,
                                    Model model,
                                    String firstName,
                                    String lastName,
+                                   MultipartFile photo,
                                    String town,
                                    String phone,
                                    String instrument,
@@ -307,6 +325,8 @@ public class UsersController {
         User user = service.getUserByEmail(authentication.getName());
         user.setFirstName(firstName);
         user.setLastName(lastName);
+
+        System.out.println(photo);
         // создаем новый город, если его нет в базе
         if (service.getTown(town) == null) {
             Town newTown = new Town();
@@ -316,6 +336,7 @@ public class UsersController {
         }
         // добавляем найденный город к пользователю
         user.setTown(service.getTown(town));
+
         user.setPhone(phone);
         // парсим инструменты через запятуню (с запроса)
         if (instrument != null) {
@@ -323,6 +344,7 @@ public class UsersController {
             // создаем массив инструментов
             List<Instrument> instrumentList = new ArrayList<>();
             for (String inst : instruments) {
+                // создаем новый инструмент, если его нет
                 if (service.getInstrument(inst) == null) {
                     Instrument newInst = new Instrument();
                     newInst.setId(null);
@@ -340,6 +362,7 @@ public class UsersController {
             // создаем массив жанров
             List<Genre> genreList = new ArrayList<>();
             for (String gen : genres) {
+                // добавляем новый жанр, если его нет
                 if (service.getGenre(gen) == null) {
                     Genre newGenre = new Genre();
                     newGenre.setId(null);
@@ -435,58 +458,5 @@ public class UsersController {
         service.saveOrUpdateUser(user);
         model.addAttribute("nick", login);
         return new ModelAndView("signup_ok");
-    }
-
-    //@PostMapping("/login{login}{password}")
-    public ModelAndView loginUser(String login, String password, Model model) {
-        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("146.. LOGIN");
-        // проверка на заполнение всех полей
-        if (login == null || password == null) {
-            model.addAttribute("loginError", "значения не введены");
-            return new ModelAndView("login");
-        }
-        // если в логине содержиться "@", то искать пользователя по почте
-        if (login.contains("@")) {
-            if (service.loginUserByNickname(login, password)) {
-            } else {
-                model.addAttribute("loginError", "Неверный логин или пароль");
-                return new ModelAndView("login"); // страница входа с сообщением ошибки
-            }
-            // в ином случае искать пользователя по логину
-        } else {
-            if (service.loginUserByNickname(login, password)) {
-            } else {
-                model.addAttribute("loginError", "Неверный логин или пароль");
-                return new ModelAndView("login"); // страница входа с сообщением ошибки
-            }
-        }
-        // возвращается страница профиля
-        User user = service.getUserByNickname(login);
-        StringBuilder builder = new StringBuilder();
-        model.addAttribute("nickname", login);
-        try {
-            for (Instrument i : user.getInstrument()) {
-                builder.append(i.getInstrument() + " ");
-            }
-        } catch (NullPointerException e) {
-            System.err.println("У пользователя не установлены инструменты");
-        }
-        model.addAttribute("instrument", builder);
-
-        builder = new StringBuilder();
-        try {
-            for (Genre g : user.getGenre()) {
-                builder.append(g.getGenre() + " ");
-            }
-        } catch (NullPointerException e) {
-            System.err.println("У пользователя не установлены жанры");
-        }
-        model.addAttribute("genre", builder);
-        model.addAttribute("town", user.getTown().getTown());
-        model.addAttribute("phone", user.getPhone());
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("about", user.getAbout());
-        return new ModelAndView("profile");
     }
 }

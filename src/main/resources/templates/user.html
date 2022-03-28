@@ -57,12 +57,14 @@
                     <div class="profile__box-top-title" th:text="${role}"></div>
                     <div class="profile__box-top-title" th:text="${name}"></div>
                 </div>
-                <div class="profile__box-input-button"><a class="submit__button" href="profile_edit">
-                    <img class="submit__button-img" src="/img/profile/settings.svg"><span>настроить профиль</span></a>
+                <div class="profile__box-input-button"><a class="submit__button" href="#">
+<!--                    <img class="submit__button-img" src="/img/profile/settings.svg">-->
+                    <span>написать</span>
+                </a>
                 </div>
                 <div class="profile__box-info">
                     <div class="profile__box-info-item"><img src="/img/profile/instrument.svg">
-                        <div class="profile__box-info-instruments"><span>инструмент:  </span>
+                        <div class="profile__box-info-instruments"><span th:text="${roleInstrument}"></span>
                             <span th:text="${instrument}"></span></div>
                     </div>
                     <div class="profile__box-info-item"><img src="/img/profile/genre.svg">
