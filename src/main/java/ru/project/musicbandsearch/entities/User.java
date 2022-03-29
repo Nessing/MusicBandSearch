@@ -41,6 +41,9 @@ public class User {
     @Column(name = "about")
     private String about;
 
+    @Column(name = "avatar")
+    private Boolean avatar;
+
     // ОДИН пользователь может владеть НЕСКОЛЬКИМИ инструментами
     @ManyToMany
     @JoinTable(name = "user_instruments",

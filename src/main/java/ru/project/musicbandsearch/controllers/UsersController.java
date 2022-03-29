@@ -1,6 +1,8 @@
 package ru.project.musicbandsearch.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -13,6 +15,8 @@ import ru.project.musicbandsearch.entities.Town;
 import ru.project.musicbandsearch.entities.User;
 import ru.project.musicbandsearch.services.UsersService;
 
+import javax.imageio.stream.ImageInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -190,6 +194,7 @@ public class UsersController {
         }
 
         changeRoleRus(model, user);
+        checkAvatar(model, user);
 
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
@@ -205,6 +210,17 @@ public class UsersController {
         }
         model.addAttribute("name", builder);
         return new ModelAndView("profile");
+    }
+
+    // провера наличия аватарки у пользователя
+    private void checkAvatar(Model model, User user) {
+        String path;
+        if (user.getAvatar()) {
+            path = "/img/users/" + user.getId() + "/avatar/avatar_" + user.getId() + ".jpg";
+        } else { //дефолтная картинка на аву
+            path = "/img/profile/defaultpic.png";
+        }
+        model.addAttribute("avatar", path);
     }
 
     @GetMapping("user/{id}")
@@ -294,6 +310,8 @@ public class UsersController {
         model.addAttribute("email", user.getEmail());
         model.addAttribute("about", user.getAbout());
 
+        checkAvatar(model, user);
+
         String role = user.getRole().getRole();
         if (role.equals("musician")) model.addAttribute("roleMusician", true);
         else if (role.equals("band")) model.addAttribute("roleBand", true);
@@ -309,13 +327,12 @@ public class UsersController {
         return builder.toString();
     }
 
-
-    @PostMapping("/profile_edit{firstName}{lastName}{photo}{town}{phone}{instrument}{genre}{role}{about}")
-    public ModelAndView updateUser(Authentication authentication,
+    @PostMapping("/profile_edit{photo}{firstName}{lastName}{town}{phone}{instrument}{genre}{role}{about}")
+    public ModelAndView updateUser(@RequestParam("photo") MultipartFile photo,
+                                   Authentication authentication,
                                    Model model,
                                    String firstName,
                                    String lastName,
-                                   MultipartFile photo,
                                    String town,
                                    String phone,
                                    String instrument,
@@ -326,7 +343,30 @@ public class UsersController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
 
-        System.out.println(photo);
+//        try {
+//            InputStream initialStream = photo.getInputStream();
+//            byte[] buffer;
+//            buffer = new byte[initialStream.available()];
+//            initialStream.read(buffer);
+//            File file = new File("D:/test/test.jpg");
+//            try (OutputStream outStream = new FileOutputStream(file)) {
+//
+//                outStream.write(buffer);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        // сохранение изображения по абсолютному пути
+        System.out.println(photo.getOriginalFilename());
+        String pathUser = "E:/JavaGeekBrains/MusicBandSearch/src/main/resources/static/img/users/" + user.getId() + "/avatar/avatar_" + user.getId() + ".jpg";
+        File file = new File(pathUser);
+        try {
+            photo.transferTo(file);
+            user.setAvatar(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // создаем новый город, если его нет в базе
         if (service.getTown(town) == null) {
             Town newTown = new Town();
@@ -400,6 +440,9 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя не установлены жанры");
         }
+
+        checkAvatar(model, user);
+
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
         model.addAttribute("phone", user.getPhone());

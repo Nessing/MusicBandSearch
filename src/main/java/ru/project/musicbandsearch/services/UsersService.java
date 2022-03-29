@@ -1,11 +1,8 @@
 package ru.project.musicbandsearch.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.project.musicbandsearch.configurations.security.models.UserInfo;
 import ru.project.musicbandsearch.entities.*;
-import ru.project.musicbandsearch.models.AuthRequestDto;
 import ru.project.musicbandsearch.repositories.*;
 
 import java.util.*;

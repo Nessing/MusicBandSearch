@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.configurations.security.services;
+package ru.project.musicbandsearch.configurations.services;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

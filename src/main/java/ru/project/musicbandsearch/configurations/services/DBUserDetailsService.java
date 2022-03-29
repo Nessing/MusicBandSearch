@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.configurations.security.services;
+package ru.project.musicbandsearch.configurations.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -51,6 +51,7 @@ CREATE TABLE USERS_TABLE
     email          VARCHAR(150) NOT NULL,
     password       VARCHAR(100) NOT NULL,
     nickname       VARCHAR(75) NOT NULL,
+    avatar         BOOLEAN NOT NULL,
     first_name     VARCHAR(75),
     last_name      VARCHAR(75),
     phone          VARCHAR(20),
@@ -61,12 +62,12 @@ CREATE TABLE USERS_TABLE
     about          VARCHAR(255)
 );
 
-INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role)VALUES
+INSERT INTO USERS_TABLE (email, password, nickname, phone, about, role, avatar)VALUES
 ('graf5@mail.com', '$2a$12$e.zXKJXPYz.ypR8J0lfgmehp/SpkoBlUY0flPlSfw7jrLjC.S1XI.', 'graf', '953-875-36-42', 'заканчивал музыкальную школу по классу фортепиано. Так же имею опыт игры на гитаре (2 года). ' ||
-                                                    'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1),
-('stieve@gmail.com', 'gt23s', 'stieve', null, null, 1),
-('farcry@gmail.com', 'gt23s', 'farcry', null, null, 2),
-('vandal@gmail.com', 'gt23s', 'vandal', null, null, 2);
+                                                    'ищу группу, которая будет играет музыку похожую на Dragonforce, Dream Theater', 1, true),
+('stieve@gmail.com', 'gt23s', 'stieve', null, null, 1, false),
+('farcry@gmail.com', 'gt23s', 'farcry', null, null, 2, false),
+('vandal@gmail.com', 'gt23s', 'vandal', null, null, 2, false);
 
 
 CREATE TABLE USER_INSTRUMENTS

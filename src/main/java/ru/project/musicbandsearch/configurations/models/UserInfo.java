@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.configurations.security.models;
+package ru.project.musicbandsearch.configurations.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

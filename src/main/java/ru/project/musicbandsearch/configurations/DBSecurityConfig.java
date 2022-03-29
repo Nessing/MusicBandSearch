@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.configurations.security;
+package ru.project.musicbandsearch.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import ru.project.musicbandsearch.configurations.security.services.DBUserDetailsService;
-
-import javax.sql.DataSource;
+import ru.project.musicbandsearch.configurations.services.DBUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

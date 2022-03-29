@@ -49,11 +49,11 @@
             <div class="caption">
                 <div class="caption__img"><img src="/img/edit/mbsLogo.PNG"></div>
             </div>
-            <form class="edit__box" action="profile_edit" method="post">
+            <form class="edit__box" action="profile_edit" method="post" enctype="multipart/form-data">
                 <div class="edit__box-logo"><img src="/img/edit/mbsLogo-1.svg"></div>
                 <div class="edit__box-top">
                     <div class="profile__box-top-title" th:text="${nickname}">username</div>
-                    <div class="edit__box-top-img"><img src="/img/edit/defaultpic.png"></div>
+                    <div class="profile__box-top-img"><img th:src="${avatar}"></div>
                     <label class="edit__box-top-downloadFile-label" for="downloadPhoto">загрузить фото</label>
                     <input class="edit__box-top-downloadFile" id="downloadPhoto" type="file" name="photo"
                            accept="image/png,image/jpeg">
