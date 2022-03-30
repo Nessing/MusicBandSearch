@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.configurations;
+package ru.project.musicbandsearch.configurations.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,11 +34,10 @@ public class DBSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and().authorizeRequests()
-                .antMatchers("/api/v1/login/**", "/api/v1/index/**", "/api/v1/signup/**", "/api/v1/login_error", "/files/**").permitAll()
+                .antMatchers("/api/v1/login/**", "/api/v1/index/**", "/api/v1/signup/**", "/api/v1/login_error").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/signup/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/login/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/index/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/upload/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/api/v1/login")

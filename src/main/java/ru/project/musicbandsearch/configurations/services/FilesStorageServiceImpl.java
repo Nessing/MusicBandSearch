@@ -1,5 +1,6 @@
 package ru.project.musicbandsearch.configurations.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,19 +17,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FilesStorageServiceImpl implements FilesStorageService {
-    private final Path root = Paths.get("uploads");
+    // создается директория, где будут храниться файлы
+    private final Path root = Paths.get("uploads/users");
+    private Path avatars;
     @Override
     public void init() {
         try {
-            Files.createDirectory(root);
+            if (!Files.isDirectory(root)) {
+                Files.createDirectory(root);
+            }
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize folder for upload!");
         }
     }
     @Override
-    public void save(MultipartFile file) {
+    public void save(MultipartFile file, Long id) {
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            avatars = Paths.get("uploads/users/" + id);
+            if (!Files.isDirectory(avatars)) {
+                Files.createDirectory(avatars);
+            }
+            File fileE = new File(avatars + "/avatar.jpg");
+            if (fileE.exists()) fileE.delete();
+            Files.copy(file.getInputStream(), this.avatars.resolve("avatar.jpg"));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
@@ -35,7 +47,8 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     @Override
     public Resource load(String filename) {
         try {
-            Path file = root.resolve(filename);
+//            Path file = root.resolve(filename);
+            Path file = avatars.resolve(filename);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
@@ -48,7 +61,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
     @Override
     public void deleteAll() {
-        FileSystemUtils.deleteRecursively(root.toFile());
+//        FileSystemUtils.deleteRecursively(root.toFile());
     }
     @Override
     public Stream<Path> loadAll() {

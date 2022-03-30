@@ -1,4 +1,4 @@
-package ru.project.musicbandsearch.models;
+package ru.project.musicbandsearch.configurations.models;
 
 public class FileInfo {
     private String name;

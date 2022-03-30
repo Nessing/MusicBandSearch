@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ru.project.musicbandsearch.configurations.services.FilesStorageService;
 import ru.project.musicbandsearch.entities.Genre;
 import ru.project.musicbandsearch.entities.Instrument;
 import ru.project.musicbandsearch.entities.Town;
 import ru.project.musicbandsearch.entities.User;
+import ru.project.musicbandsearch.models.ResponseMessage;
 import ru.project.musicbandsearch.services.UsersService;
 
 import javax.imageio.stream.ImageInputStream;
@@ -26,6 +28,8 @@ import java.util.Optional;
 @RequestMapping(value = "api/v1")
 public class UsersController {
     private final UsersService service;
+
+    private final FilesStorageService storageService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -169,7 +173,7 @@ public class UsersController {
     }
 
     @GetMapping("profile")
-    public ModelAndView profile(Authentication authentication,
+    public ModelAndView getProfile(Authentication authentication,
                                 Model model) {
         User user = service.getUserByEmail(authentication.getName());
         String login = user.getNickname();
@@ -216,7 +220,7 @@ public class UsersController {
     private void checkAvatar(Model model, User user) {
         String path;
         if (user.getAvatar()) {
-            path = "/img/users/" + user.getId() + "/avatar/avatar_" + user.getId() + ".jpg";
+            path = "avatar/avatar.jpg";
         } else { //дефолтная картинка на аву
             path = "/img/profile/defaultpic.png";
         }
@@ -224,7 +228,7 @@ public class UsersController {
     }
 
     @GetMapping("user/{id}")
-    public ModelAndView profile(@PathVariable Long id,
+    public ModelAndView getUser(@PathVariable Long id,
                                 Model model) {
         User user = service.findUserById(Long.valueOf(id)).get();
         String login = user.getNickname();
@@ -253,8 +257,6 @@ public class UsersController {
             System.err.println("У пользователя не установлены жанры");
         }
 
-        changeRoleRus(model, user);
-
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
         model.addAttribute("phone", user.getPhone());
@@ -267,7 +269,12 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя нет фамилии");
         }
+
+        checkAvatar(model, user);
+        changeRoleRus(model, user);
+
         model.addAttribute("name", builder);
+        System.out.println(user.getAvatar());
         return new ModelAndView("user");
     }
 
@@ -328,7 +335,7 @@ public class UsersController {
     }
 
     @PostMapping("/profile_edit{photo}{firstName}{lastName}{town}{phone}{instrument}{genre}{role}{about}")
-    public ModelAndView updateUser(@RequestParam("photo") MultipartFile photo,
+    public ModelAndView updateProfile(@RequestParam("photo") MultipartFile photo,
                                    Authentication authentication,
                                    Model model,
                                    String firstName,
@@ -342,30 +349,6 @@ public class UsersController {
         User user = service.getUserByEmail(authentication.getName());
         user.setFirstName(firstName);
         user.setLastName(lastName);
-
-//        try {
-//            InputStream initialStream = photo.getInputStream();
-//            byte[] buffer;
-//            buffer = new byte[initialStream.available()];
-//            initialStream.read(buffer);
-//            File file = new File("D:/test/test.jpg");
-//            try (OutputStream outStream = new FileOutputStream(file)) {
-//
-//                outStream.write(buffer);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        // сохранение изображения по абсолютному пути
-        System.out.println(photo.getOriginalFilename());
-        String pathUser = "E:/JavaGeekBrains/MusicBandSearch/src/main/resources/static/img/users/" + user.getId() + "/avatar/avatar_" + user.getId() + ".jpg";
-        File file = new File(pathUser);
-        try {
-            photo.transferTo(file);
-            user.setAvatar(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // создаем новый город, если его нет в базе
         if (service.getTown(town) == null) {
@@ -441,8 +424,6 @@ public class UsersController {
             System.err.println("У пользователя не установлены жанры");
         }
 
-        checkAvatar(model, user);
-
         model.addAttribute("genre", checkStrBuilder(builder));
         model.addAttribute("town", user.getTown().getTown());
         model.addAttribute("phone", user.getPhone());
@@ -455,6 +436,20 @@ public class UsersController {
         } catch (NullPointerException e) {
             System.err.println("У пользователя нет фамилии");
         }
+
+
+        String message = "";
+        try {
+            storageService.save(photo, user.getId());
+            user.setAvatar(true);
+            message = "Uploaded the file successfully: " + photo.getOriginalFilename();
+        } catch (Exception e) {
+            message = "Could not upload the file: " + photo.getOriginalFilename() + "!";
+        }
+
+
+        checkAvatar(model, user);
+
         model.addAttribute("name", builder);
         return new ModelAndView("profile");
     }
@@ -471,7 +466,6 @@ public class UsersController {
                                    Model model) {
         // если email и логин пользователя есть в БД (true),
         // то возвращется сообщение об ошибке
-        System.out.println("signup");
         if (service.checkExistUser(email, login)) {
             model.addAttribute("answer", "Указанный логин или почта уже существует");
             return new ModelAndView("signup");
@@ -479,6 +473,7 @@ public class UsersController {
         }
         User user = new User();
         user.setId(null);
+        user.setAvatar(false);
         user.setNickname(login);
         user.setEmail(email);
         user.setFirstName(firstName);
