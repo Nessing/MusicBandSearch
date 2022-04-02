@@ -53,7 +53,7 @@
                 <div class="profile__box-logo"><img src="/img/profile/mbsLogo-1.svg"></div>
                 <div class="profile__box-top">
                     <div class="profile__box-top-title" th:text="${nickname}">username</div>
-                    <div class="profile__box-top-img"><img th:attrprepend="src=${avatar}"></div>
+                    <div class="profile__box-top-img"><img th:attrprepend="src=${id} + ${avatar}"></div>
                     <div class="profile__box-top-title" th:text="${role}"></div>
                     <div class="profile__box-top-title" th:text="${name}"></div>
                 </div>
@@ -94,7 +94,6 @@
         </div>
     </section>
     <script src="/js/libs.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script src="/js/common.min.js"></script>
 </div>
 </body>

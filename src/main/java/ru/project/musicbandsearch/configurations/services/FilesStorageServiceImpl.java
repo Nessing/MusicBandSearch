@@ -44,12 +44,51 @@ public class FilesStorageServiceImpl implements FilesStorageService {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
     }
+
+    // метод указывает путь к аватарке профиля
+    @Override
+    public Resource load(String filename, Long id) {
+        try {
+            if (avatars == null) {
+                avatars = Paths.get("uploads/users/" + id);
+            }
+            Path file = avatars.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
     @Override
     public Resource load(String filename) {
         try {
 //            Path file = root.resolve(filename);
+            if (avatars == null) return null;
             Path file = avatars.resolve(filename);
             Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+    // метод указывает путь к аватаркам профилей
+    @Override
+    public Resource loadOfUser(String filename, Long id) {
+        try {
+//            Path file = root.resolve(filename);
+            if (avatars == null) return null;
+//            Path file = avatars.resolve(filename);
+            Path usersDir = Paths.get("uploads/users/" + id + "/avatar.jpg");
+            Resource resource = new UrlResource(usersDir.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {

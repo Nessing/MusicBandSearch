@@ -11,6 +11,8 @@ public interface FilesStorageService {
     public void init();
     public void save(MultipartFile file, Long id);
     public Resource load(String filename);
+    public Resource load(String filename, Long id);
     public void deleteAll();
     public Stream<Path> loadAll();
+    public Resource loadOfUser(String filename, Long id);
 }

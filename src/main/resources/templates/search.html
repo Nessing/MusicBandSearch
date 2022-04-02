@@ -127,31 +127,31 @@
             <span th:text="${errorSearch}"></span>
 
             <div class="search__result">
-                <a style="color: #fff" th:each="users_Role : ${usersRole}" href="/api/v1/user/" target="_blank"
-                   th:attrappend="href=${users_Role.getId()}">
+                <a style="color: #fff" th:each="users : ${usersRole}" href="/api/v1/users/" target="_blank"
+                   th:attrappend="href=${users.getId()}">
                     <div class="search__result-element">
                         <div class="search__result-element-item">
                             <div class="search__result-element-item-inner">
                                 <span style="text-decoration: underline"
-                                      th:text="${users_Role.getNickname()}">Nickname</span>
+                                      th:text="${users.getNickname()}">Nickname</span>
                             </div>
                         </div>
                         <div class="search__result-element-item">
                             <div class="search__result-element-item-inner">
-                                <span th:text="${users_Role.getTown().getTown()}">Town</span>
+                                <span th:text="${users.getTown().getTown()}">Town</span>
                             </div>
                         </div>
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>инструменты:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_instrument : ${users_Role.getInstrument()}"
+                                <span th:each="user_instrument : ${users.getInstrument()}"
                                       th:text="${user_instrument.getInstrument()}"></span>
                             </div>
                         </div>
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>жанры:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_genre : ${users_Role.getGenre()}"
+                                <span th:each="user_genre : ${users.getGenre()}"
                                       th:text="${user_genre.getGenre()}"></span>
                             </div>
                         </div>

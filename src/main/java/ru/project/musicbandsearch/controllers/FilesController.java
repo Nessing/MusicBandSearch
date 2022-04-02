@@ -69,11 +69,28 @@ public class FilesController {
         return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
     // url по которому будут доступны сохраненные файлы
-    @GetMapping("/avatar/{filename:.+}")
+    @GetMapping("avatar/{filename:.+}")
     @ResponseBody
-    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-        Resource file = storageService.load(filename);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    public ResponseEntity<Resource> getFile(Authentication authentication, @PathVariable String filename) {
+        try {
+            Long userId = usersService.getUserByEmail(authentication.getName()).getId();
+            Resource file = storageService.load(filename, userId);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    @GetMapping("users/{id}/avatar/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> getFileOfUser(@PathVariable String filename, @PathVariable Long id) {
+        try {
+            Resource file = storageService.loadOfUser(filename, id);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 }
