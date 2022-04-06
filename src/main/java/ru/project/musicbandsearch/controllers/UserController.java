@@ -22,17 +22,6 @@ public class UserController {
 
     private Checks checks = new Checks();
 
-//    // провера наличия аватарки у пользователя
-//    private void checkAvatar(Model model, User user) {
-//        String path;
-//        if (user.getAvatar()) {
-//            path = "avatar/avatar.jpg";
-//        } else { //дефолтная картинка на аву
-//            path = "/img/profile/defaultpic.png";
-//        }
-//        model.addAttribute("avatar", path);
-//    }
-
     @GetMapping("users/{id}")
     public ModelAndView getUser(@PathVariable Long id,
                                 Model model) {
@@ -68,7 +57,9 @@ public class UserController {
         model.addAttribute("phone", user.getPhone());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("about", user.getAbout());
-        model.addAttribute("id", user.getId() + "/");
+        if (user.getAvatar()) {
+            model.addAttribute("id", user.getId() + "/");
+        }
         builder = new StringBuilder();
         builder.append(user.getFirstName());
         try {
@@ -81,22 +72,6 @@ public class UserController {
         checks.changeRoleRus(model, user);
 
         model.addAttribute("name", builder);
-        System.out.println(user.getAvatar());
         return new ModelAndView("user");
     }
-
-//    // метод изменяет название роли
-//    private void changeRoleRus(Model model, User user) {
-//        if (user.getRole().getRole().equals("musician")) model.addAttribute("role", "музыкант");
-//        else if (user.getRole().getRole().equals("band")) model.addAttribute("role", "группа");
-//        else if (user.getRole().getRole().equals("costumer")) model.addAttribute("role", "заказчик");
-//    }
-//
-//    // метод убирает последюю запятую у StringBuilder
-//    private String checkStrBuilder(StringBuilder builder) {
-//        if (builder.indexOf(", ") != -1) {
-//            builder.deleteCharAt(builder.length() - 2);
-//        }
-//        return builder.toString();
-//    }
 }
