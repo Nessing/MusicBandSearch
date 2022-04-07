@@ -143,12 +143,12 @@ public class ProfileController {
         user.setPhone(phone);
         // парсим инструменты через запятуню (с запроса)
         if (instrument != null) {
-            String[] instruments = instrument.split(", ");
+            String[] instruments = instrument.split(",");
             // создаем массив инструментов
             List<Instrument> instrumentList = new ArrayList<>();
             for (String inst : instruments) {
                 // создаем новый инструмент, если его нет
-                if (service.getInstrument(inst) == null) {
+                if (service.getInstrument(inst.strip()) == null) {
                     Instrument newInst = new Instrument();
                     newInst.setId(null);
                     newInst.setInstrument(inst);
@@ -161,12 +161,12 @@ public class ProfileController {
         }
 
         if (genre != null) {
-            String[] genres = genre.split(", ");
+            String[] genres = genre.split(",");
             // создаем массив жанров
             List<Genre> genreList = new ArrayList<>();
             for (String gen : genres) {
                 // добавляем новый жанр, если его нет
-                if (service.getGenre(gen) == null) {
+                if (service.getGenre(gen.strip()) == null) {
                     Genre newGenre = new Genre();
                     newGenre.setId(null);
                     newGenre.setGenre(gen);
