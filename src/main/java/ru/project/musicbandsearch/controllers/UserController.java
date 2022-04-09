@@ -20,7 +20,7 @@ public class UserController {
 
     private final UsersService service;
 
-    private Checks checks = new Checks();
+    private final Checks checks;
 
     @GetMapping("users/{id}")
     public ModelAndView getUser(@PathVariable Long id,

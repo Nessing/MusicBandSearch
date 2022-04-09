@@ -1,8 +1,10 @@
 package ru.project.musicbandsearch.methods;
 
+import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ru.project.musicbandsearch.entities.User;
 
+@Component
 public class Checks {
     // провера наличия аватарки у пользователя
     public void checkAvatar(Model model, User user) {

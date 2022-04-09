@@ -56,8 +56,8 @@ public class SearchController {
                 model.addAttribute("displayBlock", "display: block");
                 model.addAttribute("nicknameSearch", user.getNickname());
                 model.addAttribute("role", user.getRole().getRole());
-                model.addAttribute("genre", user.getGenre());
-                model.addAttribute("instrument", user.getInstrument());
+                model.addAttribute("genres", user.getGenre());
+                model.addAttribute("instruments", user.getInstrument());
                 model.addAttribute("town", user.getTown().getTown());
             } else {
                 model.addAttribute("displayBlock", "display: none");

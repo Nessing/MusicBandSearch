@@ -95,7 +95,7 @@
             <br>
             <!--получение пользователя по нику-->
             <div class="search__result" th:style="${displayBlock}">
-                <a style="color: #fff" target="_blank" href="/api/v1/user/"
+                <a style="color: #fff" target="_blank" href="/api/v1/users/"
                    th:attrappend="href=${userId}">
                     <div class="search__result-element">
                         <div class="search__result-element-item">
@@ -111,14 +111,14 @@
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>инструменты:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_instrument : ${instrument}"
+                                <span th:each="user_instrument : ${instruments}"
                                       th:text="${user_instrument.getInstrument()}"></span>
                             </div>
                         </div>
                         <div class="search__result-element-item result-box">
                             <div class="result-box-item"><span>жанры:</span></div>
                             <div class="result-box-item result-box-item-list">
-                                <span th:each="user_genre : ${genre}" th:text="${user_genre.getGenre()}"></span>
+                                <span th:each="user_genre : ${genres}" th:text="${user_genre.getGenre()}"></span>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ public class ProfileController {
 
     private final FilesStorageService storageService;
 
-    private Checks checks = new Checks();
+    private final Checks checks;
 
     @GetMapping("profile")
     public ModelAndView getProfile(Authentication authentication,
@@ -143,7 +143,7 @@ public class ProfileController {
         user.setPhone(phone);
         // парсим инструменты через запятуню (с запроса)
         if (instrument != null) {
-            String[] instruments = instrument.split(",");
+            String[] instruments = instrument.split(", ");
             // создаем массив инструментов
             List<Instrument> instrumentList = new ArrayList<>();
             for (String inst : instruments) {
@@ -161,7 +161,7 @@ public class ProfileController {
         }
 
         if (genre != null) {
-            String[] genres = genre.split(",");
+            String[] genres = genre.strip().split(", ");
             // создаем массив жанров
             List<Genre> genreList = new ArrayList<>();
             for (String gen : genres) {
@@ -183,8 +183,10 @@ public class ProfileController {
 
         String message = "";
         try {
-            storageService.save(photo, user.getId());
-            user.setAvatar(true);
+            if (!photo.isEmpty()) {
+                storageService.save(photo, user.getId());
+                user.setAvatar(true);
+            }
             message = "Uploaded the file successfully: " + photo.getOriginalFilename();
         } catch (Exception e) {
             message = "Could not upload the file: " + photo.getOriginalFilename() + "!";
